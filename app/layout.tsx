@@ -1,10 +1,25 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Syne, DM_Sans, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { CustomCursor } from '@/components/custom-cursor'
 import './globals.css'
 
-const _inter = Inter({ subsets: ["latin"] });
-const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] });
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-syne',
+  weight: ['400', '600', '700', '800'],
+})
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['300', '400', '500'],
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-mono',
+  weight: ['300', '400', '500'],
+})
 
 export const metadata: Metadata = {
   title: 'Alae Ibnou Cheikh | CS Student & AI Developer',
@@ -36,7 +51,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
+        <body className={`${syne.variable} ${dmSans.variable} ${ibmPlexMono.variable} font-sans antialiased`}>
+        <CustomCursor />
         {children}
         <Analytics />
       </body>
