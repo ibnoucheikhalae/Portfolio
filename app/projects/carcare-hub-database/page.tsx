@@ -1,335 +1,374 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft, Database, Zap, Lock, BarChart3, Layers, Code } from "lucide-react"
-import React from "react"
+import { useEffect } from 'react';
+import './carcare-hub.css';
 
-export default function CarCareHubPage() {
-  const [expandedImage, setExpandedImage] = React.useState<string | null>(null)
+export default function CarCareHub() {
+  useEffect(() => {
+    // Cursor animation
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
 
-  const features = [
-    {
-      title: "15-Table Schema",
-      icon: <Layers className="h-6 w-6" />,
-      description: "Fully normalized relational database up to 3NF with proper referential integrity",
-    },
-    {
-      title: "Complex Queries",
-      icon: <BarChart3 className="h-6 w-6" />,
-      description: "Advanced SQL queries for revenue analysis, service trends, and technician workload",
-    },
-    {
-      title: "Business Logic",
-      icon: <Code className="h-6 w-6" />,
-      description: "Stored procedures encapsulating common business operations and workflows",
-    },
-    {
-      title: "Data Integrity",
-      icon: <Lock className="h-6 w-6" />,
-      description: "Cascading constraints and referential integrity ensuring data consistency",
-    },
-    {
-      title: "Performance",
-      icon: <Zap className="h-6 w-6" />,
-      description: "Index optimization on frequently queried fields for fast reporting",
-    },
-    {
-      title: "Production-Ready",
-      icon: <Database className="h-6 w-6" />,
-      description: "Comprehensive documentation and sample data for immediate deployment",
-    },
-  ]
+    const handleMouseMove = (e: MouseEvent) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (cursor) {
+        cursor.style.left = (mx - 6) + 'px';
+        cursor.style.top = (my - 6) + 'px';
+      }
+    };
 
-  const techStack = ["PostgreSQL", "SQL", "Normalization Theory", "Database Design", "Query Optimization"]
+    document.addEventListener('mousemove', handleMouseMove);
+
+    const animRing = () => {
+      rx += (mx - rx - 20) * 0.12;
+      ry += (my - ry - 20) * 0.12;
+      if (ring) {
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      requestAnimationFrame(animRing);
+    };
+
+    animRing();
+
+    // Scroll reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.classList.add('visible');
+          }, i * 80);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(r => obs.observe(r));
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      obs.disconnect();
+    };
+  }, []);
 
   return (
     <>
-      {expandedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          onClick={() => setExpandedImage(null)}
-        >
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setExpandedImage(null)}
-              className="absolute -top-10 right-0 text-white hover:text-primary transition-colors z-10 group"
-            >
-              <svg
-                className="w-8 h-8 group-hover:scale-110 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <Image
-              src={`/images/${expandedImage}.jpg`}
-              alt="Expanded view"
-              fill
-              className="object-contain"
-            />
+      <div className="cursor" id="cursor"></div>
+      <div className="cursor-ring" id="cursorRing"></div>
+
+      <nav>
+        <a href="/" className="nav-logo">
+          CarCare<span>Hub</span>
+        </a>
+        <div className="nav-links">
+          <a href="#schema">Schema</a>
+          <a href="#decisions">Decisions</a>
+          <a href="#sql">SQL</a>
+          <a href="#normalisation">3NF</a>
+          <a href="#process">Process</a>
+        </div>
+        <a href="/projects" className="nav-back">← Back to Projects</a>
+      </nav>
+
+      <section className="hero" id="overview">
+        <div className="hero-bg">
+          <div className="hero-orb orb1"></div>
+          <div className="hero-orb orb2"></div>
+        </div>
+
+        <div className="hero-left">
+          <div className="hero-tag">Relational Database Design · M30232</div>
+          <h1>CarCare<br /><span className="line2">Hub.</span></h1>
+          <p className="hero-desc">
+            A fully normalised relational database for a real-world car service business. Designed across two coursework iterations progressively refined through ERD redesign, SQL implementation, and constraint enforcement.
+          </p>
+          <div className="hero-ctas">
+            <a href="#schema" className="btn-primary">Explore Schema →</a>
+            <a href="#decisions" className="btn-secondary">Design Decisions</a>
           </div>
         </div>
-      )}
 
-      <main className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-            <svg className="absolute inset-0 opacity-10" width="100%" height="100%">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+        <div className="hero-right">
+          <div className="float-card float-card-1">
+            <div className="float-label">Normal Form</div>
+            <div className="float-value green">3NF</div>
+            <div className="float-sub">Fully achieved</div>
           </div>
 
-          <div className="relative max-w-4xl mx-auto text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Link>
-
-            <div className="space-y-6">
-              <div className="flex justify-center gap-2 flex-wrap">
-                {["Database Design", "Data Modeling", "SQL", "Business Logic"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          <div className="db-mockup">
+            <div className="db-titlebar">
+              <div className="db-dot r"></div>
+              <div className="db-dot y"></div>
+              <div className="db-dot g"></div>
+              <span className="db-filename">carcare_hub.sql</span>
+            </div>
+            <div className="db-body">
+              <div className="db-table">
+                <div className="db-table-head">Customers</div>
+                <div className="db-row"><span className="pk">cust_id</span><span className="type">PK · SERIAL</span></div>
+                <div className="db-row"><span>cust_fname</span><span className="type">VARCHAR(50)</span></div>
+                <div className="db-row"><span>cust_email</span><span className="type">UNIQUE</span></div>
+                <div className="db-row"><span>cust_phone_num</span><span className="type">UNIQUE</span></div>
               </div>
-
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
-                CarCare Hub Database
-              </h1>
-
-              <p className="text-xl text-muted-foreground">
-                Enterprise data architecture for automotive service management
-              </p>
-
-              <p className="max-w-2xl mx-auto text-base text-muted-foreground leading-relaxed">
-                A comprehensive relational database system designed to manage every aspect of a car service business:
-                customers, vehicles, appointments, services, invoicing, inventory, and multi-location operations.
-              </p>
+              <div className="db-arrow">↕</div>
+              <div className="db-table">
+                <div className="db-table-head">Cars</div>
+                <div className="db-row"><span className="pk">car_id</span><span className="type">PK · SERIAL</span></div>
+                <div className="db-row"><span className="fk">cust_id</span><span className="type">FK → Customers</span></div>
+                <div className="db-row"><span className="fk">car_model_id</span><span className="type">FK → Models</span></div>
+                <div className="db-row"><span>car_condition</span><span className="type">ENUM</span></div>
+              </div>
+              <div className="db-arrow">↕</div>
+              <div className="db-table">
+                <div className="db-table-head">Service Appointments</div>
+                <div className="db-row"><span className="pk">serv_app_id</span><span className="type">PK · SERIAL</span></div>
+                <div className="db-row"><span className="fk">car_id</span><span className="type">FK → Cars</span></div>
+                <div className="db-row"><span>serv_app_status</span><span className="type">ENUM</span></div>
+                <div className="db-row"><span>serv_app_time</span><span className="type">CHECK 09–17</span></div>
+              </div>
             </div>
           </div>
-        </section>
 
-        {/* Business Need Section */}
-        <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl">
-            <div className="rounded-2xl border border-border bg-card/50 backdrop-blur p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-foreground mb-6">Business Challenge</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                A growing car service business operated across multiple workshop locations with manual record-keeping
-                for customers, vehicles, service appointments, technician assignments, and invoicing. This created data
-                silos, errors, and made it impossible to analyze business performance.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                The need was for a robust, normalized database system that could handle the complete business workflow
-                from customer registration through service delivery, parts inventory management, and financial reporting.
-              </p>
-            </div>
+          <div className="float-card float-card-2">
+            <div className="float-label">Tables Designed</div>
+            <div className="float-value" style={{ fontSize: '14px', color: 'var(--white)' }}>15 Normalised</div>
+            <div className="float-sub">PostgreSQL · ERD · SQL</div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Design Approach Section */}
-        <section className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Database Architecture</h2>
+      <div className="stats reveal">
+        <div className="stat"><div className="stat-number">15<span>×</span></div><div className="stat-label">Normalised relational tables</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">3<span>NF</span></div><div className="stat-label">Third Normal Form achieved</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">2<span>×</span></div><div className="stat-label">ERD design iterations</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">40<span>+</span></div><div className="stat-label">Hours of design work</div></div>
+      </div>
 
-            <p className="text-muted-foreground leading-relaxed mb-12">
-              Designed a comprehensive PostgreSQL database with 15 interconnected tables following normalization
-              principles up to 3NF. The schema covers the entire business domain while maintaining referential integrity
-              and data consistency.
-            </p>
+      <section id="schema">
+        <div className="section-tag reveal">Schema</div>
+        <h2 className="reveal">15 tables.<br />One system.</h2>
+        <p className="section-desc reveal">
+          Every entity in the CarCare Hub business mapped to a clean, normalised schema from customers and cars through to staff scheduling, invoicing, and structured feedback.
+        </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-                >
-                  <div className="inline-flex h-10 w-10 rounded-lg bg-primary/10 text-primary items-center justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground">{feature.description}</p>
+        <div className="schema-grid reveal">
+          {[
+            { name: 'Customers', fields: [{ label: 'cust_id', badge: 'PK', type: 'pk' }, { label: 'cust_fname', badge: 'VARCHAR(50)' }, { label: 'cust_email', badge: 'UNIQUE' }, { label: 'cust_phone_num', badge: 'UNIQUE' }, { label: 'cust_country', badge: 'VARCHAR(30)' }] },
+            { name: 'Cars', fields: [{ label: 'car_id', badge: 'PK', type: 'pk' }, { label: 'cust_id', badge: 'FK', type: 'fk' }, { label: 'car_model_id', badge: 'FK', type: 'fk' }, { label: 'car_condition', badge: 'ENUM' }, { label: 'car_plate_number', badge: 'UNIQUE' }] },
+            { name: 'Staff', fields: [{ label: 'staff_id', badge: 'PK', type: 'pk' }, { label: 'dep_id', badge: 'FK', type: 'fk' }, { label: 'staff_email', badge: 'UNIQUE' }, { label: 'staff_manager', badge: 'BOOLEAN' }, { label: 'staff_country', badge: 'VARCHAR(30)' }] },
+            { name: 'Service Appointments', fields: [{ label: 'serv_app_id', badge: 'PK', type: 'pk' }, { label: 'car_id', badge: 'FK', type: 'fk' }, { label: 'serv_app_status', badge: 'ENUM' }, { label: 'serv_app_date', badge: 'DATE' }, { label: 'serv_app_time', badge: 'CHECK 09–17' }] },
+            { name: 'Departments', fields: [{ label: 'dep_id', badge: 'PK', type: 'pk' }, { label: 'dep_name', badge: 'UNIQUE' }, { label: 'dep_type', badge: 'ENUM' }] },
+            { name: 'Services', fields: [{ label: 'serv_id', badge: 'PK', type: 'pk' }, { label: 'dep_id', badge: 'FK', type: 'fk' }, { label: 'serv_name', badge: 'UNIQUE' }, { label: 'serv_cost', badge: 'DECIMAL(8,2)' }] },
+            { name: 'Invoice', fields: [{ label: 'inv_id', badge: 'PK', type: 'pk' }, { label: 'serv_app_id', badge: 'FK', type: 'fk' }, { label: 'inv_total_amount', badge: 'DECIMAL(8,2)' }, { label: 'inv_due_date', badge: 'DATE' }, { label: 'inv_no_payments', badge: 'SMALLINT' }] },
+            { name: 'Feedback', fields: [{ label: 'feedback_id', badge: 'PK', type: 'pk' }, { label: 'cust_id', badge: 'FK', type: 'fk' }, { label: 'staff_id', badge: 'FK', type: 'fk' }, { label: 'feedback_ratings', badge: 'ENUM' }, { label: 'feedback_date', badge: 'DATE' }] },
+            { name: 'Car Models', fields: [{ label: 'car_model_id', badge: 'PK', type: 'pk' }, { label: 'man_id', badge: 'FK', type: 'fk' }, { label: 'car_model_name', badge: 'VARCHAR(30)' }, { label: 'car_model_fuel_type', badge: 'ENUM' }] },
+            { name: 'Schedule', fields: [{ label: 'schedule_id', badge: 'PK', type: 'pk' }, { label: 'sch_shift', badge: 'ENUM' }, { label: 'sch_date', badge: 'DATE' }, { label: 'sch_start_time', badge: '≥ 08:00' }, { label: 'sch_end_time', badge: '≤ 18:00' }] },
+            { name: 'Payment', fields: [{ label: 'pay_id', badge: 'PK', type: 'pk' }, { label: 'inv_id', badge: 'FK', type: 'fk' }, { label: 'pay_date', badge: 'DATE' }, { label: 'pay_amount', badge: 'DECIMAL(8,2)' }, { label: 'pay_inst_no', badge: 'SMALLINT' }] },
+            { name: 'Service Details', fields: [{ label: 'task_id', badge: 'PK', type: 'pk' }, { label: 'serv_app_id', badge: 'FK', type: 'fk' }, { label: 'staff_id', badge: 'FK', type: 'fk' }, { label: 'serv_add_cost', badge: 'DECIMAL' }, { label: 'serv_report', badge: 'TEXT' }] },
+          ].map((table) => (
+            <div key={table.name} className="schema-table">
+              <div className="schema-accent-bar"></div>
+              <div className="schema-table-name">{table.name}</div>
+              {table.fields.map((field, idx) => (
+                <div key={idx} className="schema-field">
+                  <span className={`fn ${field.type || ''}`}>{field.label}</span>
+                  <span className={`badge ${field.type || ''}`}>{field.badge}</span>
                 </div>
               ))}
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="decisions" className="decisions-section">
+        <div className="section-tag reveal">Design Decisions</div>
+        <h2 className="reveal">Built to<br/>last.</h2>
+        <p className="section-desc reveal">
+          Key architectural choices made across CW1 and CW2 each one improving data integrity, reducing redundancy, or resolving real design flaws.
+        </p>
+
+        <div className="features-layout reveal">
+          <div className="feature-block accent-block">
+            <div className="feature-num">01</div>
+            <div className="feature-tag">Normalisation</div>
+            <div className="feature-title">Cars extracted into Car Models + Manufacturer</div>
+            <div className="feature-desc">CW1 stored manufacturer data directly in the Cars table, creating redundancy. CW2 extracted this into a separate Car_Models table eliminating duplication and achieving proper 3NF compliance.</div>
           </div>
-        </section>
-
-        {/* Core Tables Section */}
-        <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Core Data Entities</h2>
-
-            <div className="space-y-4">
-              {[
-                { name: "Customers", desc: "Client information, contact details, service history" },
-                { name: "Vehicles", desc: "Vehicle details, make/model, owner relationships, service records" },
-                { name: "Appointments", desc: "Service bookings, scheduling, technician assignment" },
-                { name: "Services", desc: "Service catalog, pricing, duration, required parts" },
-                { name: "Service Orders", desc: "Actual service instances, work performed, completion status" },
-                { name: "Invoicing", desc: "Billing records, payment tracking, multi-location accounting" },
-                { name: "Inventory", desc: "Parts management, stock levels, supplier relationships" },
-                { name: "Technicians", desc: "Staff profiles, specializations, workload management" },
-              ].map((entity, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card hover:bg-card/50 transition-colors"
-                >
-                  <div className="h-8 w-8 rounded bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary font-semibold text-sm">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{entity.name}</h3>
-                    <p className="text-sm text-muted-foreground">{entity.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="feature-block">
+            <div className="feature-num">02</div>
+            <div className="feature-tag">Scheduling</div>
+            <div className="feature-title">Boolean flag replaced with a full Schedule system</div>
+            <div className="feature-desc">The initial ERD used a simple staff_available boolean. This was replaced with a dedicated Schedule table and Staff_Schedule intersection table, supporting shift types and many-to-many staff assignments.</div>
           </div>
-        </section>
-
-        {/* Tech Stack Section */}
-        <section className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Technology & Techniques</h2>
-
-            <div className="rounded-2xl border border-border bg-card p-8">
-              <div className="flex flex-wrap gap-3 mb-8">
-                {techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center px-4 py-2 rounded-lg border border-primary/30 bg-primary/10 text-primary text-sm font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="space-y-6 text-muted-foreground">
-                <div>
-                  <p className="text-primary font-semibold mb-2">Normalization (3NF)</p>
-                  <p>Eliminated data redundancy while maintaining referential integrity for a clean, maintainable schema</p>
-                </div>
-                <div>
-                  <p className="text-primary font-semibold mb-2">Indexing Strategy</p>
-                  <p>Strategic index placement on frequently queried fields for optimal query performance and reporting</p>
-                </div>
-                <div>
-                  <p className="text-primary font-semibold mb-2">Stored Procedures</p>
-                  <p>Business logic encapsulation for common operations like invoice generation and service completion</p>
-                </div>
-              </div>
-            </div>
+          <div className="feature-block">
+            <div className="feature-num">03</div>
+            <div className="feature-tag">Financial Flow</div>
+            <div className="feature-title">3-table Installment Plan simplified to Invoice → Payment</div>
+            <div className="feature-desc">CW1 used three tables introducing unnecessary joins. CW2 simplified to Invoice → Payment with an inv_no_payments field preserving all business logic with far less complexity.</div>
           </div>
-        </section>
-
-        {/* Results Section */}
-        <section className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Results & Deliverables</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8">
-                <h3 className="text-lg font-semibold text-primary mb-3">Schema Design</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Complete 15-table normalized schema with comprehensive documentation, ERD diagrams, and deployment
-                  scripts ready for production.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8">
-                <h3 className="text-lg font-semibold text-primary mb-3">Query Library</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Suite of complex analytical queries for revenue analysis, service trends, technician performance,
-                  and inventory reporting.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8">
-                <h3 className="text-lg font-semibold text-primary mb-3">Sample Data</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Realistic test data demonstrating the system's capability to handle multi-location, multi-customer,
-                  complex business scenarios.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8">
-                <h3 className="text-lg font-semibold text-primary mb-3">Documentation</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Detailed schema documentation, business logic explanation, and integration guidelines for developers.
-                </p>
-              </div>
-            </div>
+          <div className="feature-block">
+            <div className="feature-num">04</div>
+            <div className="feature-tag">Accountability</div>
+            <div className="feature-title">Feedback_Handling table added for staff accountability</div>
+            <div className="feature-desc">No mechanism existed to track which staff member addressed a complaint. The new Feedback_Handling table links each feedback record to a specific staff member with a response date and handling note.</div>
           </div>
-        </section>
-
-        {/* Learnings Section */}
-        <section className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Key Learnings</h2>
-
-            <div className="rounded-2xl border border-border bg-card p-8">
-              <ul className="space-y-4">
-                <li className="flex items-start gap-4">
-                  <span className="h-2 w-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    <span className="text-primary font-semibold">Normalization Benefits:</span> Understanding how proper
-                    normalization eliminates anomalies and makes schemas maintainable and scalable.
-                  </span>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="h-2 w-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    <span className="text-primary font-semibold">Business Perspective:</span> Designing from business
-                    requirements rather than technical constraints, ensuring the database serves real operational needs.
-                  </span>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="h-2 w-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    <span className="text-primary font-semibold">Query Optimization:</span> Writing efficient SQL
-                    queries, proper indexing strategies, and query planning for analytical workloads.
-                  </span>
-                </li>
-              </ul>
-            </div>
+          <div className="feature-block">
+            <div className="feature-num">05</div>
+            <div className="feature-tag">Data Integrity</div>
+            <div className="feature-title">ENUM values corrected from numeric to named categories</div>
+            <div className="feature-desc">CW1 used numeric ENUM values (1, 2, 3) for status fields. CW2 replaced these with explicit named options like 'Scheduled', 'Completed', 'Cancelled' preventing ambiguous data entry.</div>
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="px-6 py-24">
-          <div className="mx-auto max-w-2xl text-center rounded-2xl border border-border bg-card p-12">
-            <h3 className="text-2xl font-bold text-foreground mb-4">View the Code</h3>
-            <p className="text-muted-foreground mb-8">Explore the full database schema and queries on GitHub</p>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-hover hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/20"
-            >
-              View on GitHub
-              <ArrowLeft className="h-4 w-4 rotate-180" />
-            </a>
+          <div className="feature-block">
+            <div className="feature-num">06</div>
+            <div className="feature-tag">International Support</div>
+            <div className="feature-title">VARCHAR(15) for plate numbers supports international clients</div>
+            <div className="feature-desc">Initially CHAR was considered for fixed UK formats. VARCHAR(15) accommodates international customers from France, Belgium, and beyond whose plate number formats vary significantly in length and structure.</div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      <section id="sql">
+        <div className="section-tag reveal">Implementation</div>
+        <h2 className="reveal">SQL that<br/>enforces rules.</h2>
+        <p className="section-desc reveal">
+          Constraints, CHECK conditions, ENUM types, and foreign key relationships enforced at the database level not just in application logic.
+        </p>
+
+        <div className="sql-window reveal">
+          <div className="sql-titlebar">
+            <div className="sql-dot r"></div><div className="sql-dot y"></div><div className="sql-dot g"></div>
+            <span className="sql-filename">carcare_hub.sql PostgreSQL</span>
+          </div>
+          <div className="sql-body">
+            <pre>{`-- Service Appointments with CHECK constraint
+CREATE TABLE service_appointments (
+  serv_app_id     SERIAL   PRIMARY KEY,
+  car_id          INT      NOT NULL,
+  serv_app_status VARCHAR
+    CHECK (serv_app_status IN (
+    'Scheduled', 'In Progress',
+    'Completed', 'Cancelled'
+  ))                          NOT NULL,
+  serv_app_date   DATE     NOT NULL,
+  serv_app_time   TIME     NOT NULL
+    CHECK (serv_app_time
+      BETWEEN '09:00:00'
+      AND     '17:00:00'),
+  FOREIGN KEY (car_id)
+    REFERENCES cars(car_id)
+);`}</pre>
+            <pre>{`-- Feedback with structured ratings
+CREATE TABLE feedback (
+  feedback_id      SERIAL  PRIMARY KEY,
+  cust_id          INT     NOT NULL,
+  staff_id         INT     NOT NULL,
+  feedback_comment TEXT,
+  feedback_ratings VARCHAR
+    CHECK (feedback_ratings IN (
+    'Very Poor', 'Poor',
+    'Average', 'Good',
+    'Excellent'
+  ))                          NOT NULL,
+  feedback_date    DATE    NOT NULL,
+  FOREIGN KEY (cust_id)
+    REFERENCES customers(cust_id),
+  FOREIGN KEY (staff_id)
+    REFERENCES staff(staff_id)
+);`}</pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="normalisation" className="normalisation-section">
+        <div className="section-tag reveal">Normalisation</div>
+        <h2 className="reveal">No redundancy.<br/>No anomalies.</h2>
+        <p className="section-desc reveal">
+          Every table verified against the three normal form rules atomic values, full functional dependency, and no transitive dependencies.
+        </p>
+
+        <div className="norm-grid reveal">
+          <div className="norm-card">
+            <div className="norm-nf">1NF</div>
+            <div className="norm-title">First Normal Form</div>
+            <div className="norm-body">All attributes contain atomic values. No repeating groups or multi-valued fields in any table.</div>
+            <div className="norm-item">Each column holds a single value</div>
+            <div className="norm-item">All rows uniquely identifiable via PK</div>
+            <div className="norm-item">No arrays or nested data structures</div>
+          </div>
+          <div className="norm-card">
+            <div className="norm-nf">2NF</div>
+            <div className="norm-title">Second Normal Form</div>
+            <div className="norm-body">All non-key attributes depend fully on the entire primary key no partial dependencies exist.</div>
+            <div className="norm-item">Car details separated from Customer data</div>
+            <div className="norm-item">Service details not stored in appointments</div>
+            <div className="norm-item">Intersection tables resolve many-to-many</div>
+          </div>
+          <div className="norm-card">
+            <div className="norm-nf">3NF</div>
+            <div className="norm-title">Third Normal Form</div>
+            <div className="norm-body">No transitive dependencies. Every non-key attribute depends only on the primary key, nothing else.</div>
+            <div className="norm-item">Manufacturer extracted from Car_Models</div>
+            <div className="norm-item">Department data not duplicated in Staff</div>
+            <div className="norm-item">Invoice details not duplicated in Payment</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div className="section-tag reveal">Process</div>
+        <h2 className="reveal">Iterated.<br/>Refined.</h2>
+        <p className="section-desc reveal">
+          Developed across two graded coursework cycles each building on the feedback and shortcomings of the previous iteration.
+        </p>
+
+        <div className="timeline reveal">
+          <div className="timeline-item">
+            <div className="timeline-phase">Oct 2024 CW1</div>
+            <div className="timeline-title">Initial Planning & Case Study Review</div>
+            <div className="timeline-desc">Analysed CarCare Hub business requirements. Identified all entities, relationships, and initial assumptions. Each team member designed an independent ERD draft before group consolidation into a single model.</div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-phase">Nov 2024 CW1</div>
+            <div className="timeline-title">ERD Design & Data Dictionary</div>
+            <div className="timeline-desc">Produced the first full ERD with 13 tables, resolved many-to-many relationships using intersection tables, and completed a comprehensive data dictionary covering all attributes, data types, and constraints.</div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-phase">Jan 2025 CW2</div>
+            <div className="timeline-title">ERD Redesign After Feedback</div>
+            <div className="timeline-desc">Reviewed CW1 feedback and redesigned the ERD. Key changes: extracted Car_Models, replaced boolean availability with Schedule, introduced Feedback_Handling, corrected ENUM notations, and simplified payment structure to 15 tables.</div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-phase">Feb 2025 CW2</div>
+            <div className="timeline-title">SQL Implementation & Debugging</div>
+            <div className="timeline-desc">Wrote full CREATE TABLE statements, INSERT data, and tested with SELECT/JOIN queries. Debugged constraint violations, foreign key dependencies, and data type mismatches in practical sessions.</div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-phase">Feb 2025 CW2</div>
+            <div className="timeline-title">Reflective Analysis & Final Submission</div>
+            <div className="timeline-desc">Documented all design decisions, compared CW1 vs CW2 ERDs, and wrote a structured reflective analysis covering removals, additions, cardinality corrections, and constraint improvements.</div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div className="footer-left">
+          <h3>Alae Ibnoucheikh</h3>
+          <p>MEng Computer Science · University of Portsmouth</p>
+          <p style={{ marginTop: '4px', fontSize: '12px', color: '#444' }}>Database Systems Development · M30232</p>
+        </div>
+        <div className="footer-links">
+          <a href="https://www.linkedin.com/in/alae-ibnou-cheikh-a9994b334/" target="_blank" rel="noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:ibnoucheikhalae@gmail.com">✉ Contact</a>
+        </div>
+      </footer>
     </>
-  )
+  );
 }
