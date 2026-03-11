@@ -158,7 +158,7 @@ export default function UnionShopPage() {
                 </div>
                 <div className="app-grid">
                   <div className="app-product-card">
-                    <div className="app-product-img">👕</div>
+                    <div className="app-product-img">🧥</div>
                     <div className="app-product-name">Classic Hoodie</div>
                     <div className="app-product-price">£29.99</div>
                   </div>
@@ -168,18 +168,18 @@ export default function UnionShopPage() {
                     <div className="app-product-price">£24.99</div>
                   </div>
                   <div className="app-product-card">
-                    <div className="app-product-img">🎒</div>
+                    <div className="app-product-img">👜</div>
                     <div className="app-product-name">Tote Bag</div>
                     <div className="app-product-price">£12.99</div>
                   </div>
                   <div className="app-product-card">
-                    <div className="app-product-img">📚</div>
+                    <div className="app-product-img">✏️</div>
                     <div className="app-product-name">Stationery</div>
                     <div className="app-product-price">£8.99</div>
                   </div>
                 </div>
                 <div className="app-cart-bar">
-                  <div className="app-cart-text">🛒 Cart 2 items</div>
+                  <div className="app-cart-text">Cart 2 items</div>
                   <div className="app-cart-text">£54.98 →</div>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function UnionShopPage() {
       </div>
 
       {/* Features */}
-      <section id="features">
+      <section id="features" className="light-section">
         <div className="section-tag reveal">Features</div>
         <h2 className="reveal">
           Built for real<br />
@@ -240,7 +240,7 @@ export default function UnionShopPage() {
         <div className="features-layout reveal">
           <div className="feature-block">
             <div className="feature-num">01</div>
-            <div className="feature-title">🔐 Authentication System</div>
+            <div className="feature-title">Authentication System</div>
             <div className="feature-desc">
               Full user auth with Email/Password, Google Sign-In, and Apple Sign-In. Session persistence, profile
               management via Firestore, and password reset flows.
@@ -248,7 +248,7 @@ export default function UnionShopPage() {
           </div>
           <div className="feature-block accent-block">
             <div className="feature-num">02</div>
-            <div className="feature-title">🛒 Cart & Checkout</div>
+            <div className="feature-title">Cart & Checkout</div>
             <div className="feature-desc">
               Real-time cart with add/remove/quantity management. Automatic VAT calculation (20%), free shipping
               threshold at £50, and persistent cart storage across sessions.
@@ -256,7 +256,7 @@ export default function UnionShopPage() {
           </div>
           <div className="feature-block">
             <div className="feature-num">03</div>
-            <div className="feature-title">🎨 Print Shack Personalisation</div>
+            <div className="feature-title">Print Shack Personalisation</div>
             <div className="feature-desc">
               Dynamic merchandise customisation users select product type, garment colour, font, and up to 3 lines
               of personalised text with live preview updates.
@@ -264,7 +264,7 @@ export default function UnionShopPage() {
           </div>
           <div className="feature-block">
             <div className="feature-num">04</div>
-            <div className="feature-title">🔍 Search & Filtering</div>
+            <div className="feature-title">Search & Filtering</div>
             <div className="feature-desc">
               Global search across all product collections. Advanced filtering by price, name, and popularity.
               Pagination for large catalogs with smooth navigation.
@@ -272,7 +272,7 @@ export default function UnionShopPage() {
           </div>
           <div className="feature-block">
             <div className="feature-num">05</div>
-            <div className="feature-title">📱 Responsive Design</div>
+            <div className="feature-title">Responsive Design</div>
             <div className="feature-desc">
               Optimised for mobile-first with full desktop support. Adaptive layouts tested across device profiles
               including iPhone, Pixel, and widescreen viewports.
@@ -280,7 +280,7 @@ export default function UnionShopPage() {
           </div>
           <div className="feature-block">
             <div className="feature-num">06</div>
-            <div className="feature-title">🧪 Test Coverage</div>
+            <div className="feature-title">Test Coverage</div>
             <div className="feature-desc">
               201 passing tests across unit, widget, and integration layers. Covers edge cases, cart operations, auth
               flows, search functionality, and form validation.
@@ -290,7 +290,7 @@ export default function UnionShopPage() {
       </section>
 
       {/* Tech Stack */}
-      <section id="tech" style={{ background: "var(--card)", padding: "100px 80px" }}>
+      <section id="tech" style={{ background: "var(--card)" }}>
         <div className="section-tag reveal">Technology</div>
         <h2 className="reveal">
           The stack<br />
@@ -303,7 +303,6 @@ export default function UnionShopPage() {
         <div className="tech-grid reveal">
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">🐦</div>
             <div className="tech-name">Flutter & Dart</div>
             <div className="tech-desc">
               Cross-platform UI framework enabling single codebase deployment to iOS, Android, and Web with native
@@ -312,7 +311,6 @@ export default function UnionShopPage() {
           </div>
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">🔥</div>
             <div className="tech-name">Firebase Auth</div>
             <div className="tech-desc">
               Secure authentication supporting Email/Password, Google, and Apple Sign-In with session management and
@@ -321,7 +319,6 @@ export default function UnionShopPage() {
           </div>
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">☁️</div>
             <div className="tech-name">Cloud Firestore</div>
             <div className="tech-desc">
               Real-time NoSQL cloud database for user profiles, persistent cart storage, and order management across
@@ -330,7 +327,6 @@ export default function UnionShopPage() {
           </div>
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">🔑</div>
             <div className="tech-name">Google & Apple OAuth</div>
             <div className="tech-desc">
               Social authentication providers integrated for frictionless sign-in using industry-standard OAuth 2.0
@@ -339,7 +335,6 @@ export default function UnionShopPage() {
           </div>
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">💾</div>
             <div className="tech-name">SharedPreferences</div>
             <div className="tech-desc">
               Local data persistence layer for offline-first cart storage and user settings, synced with Firestore on
@@ -348,7 +343,6 @@ export default function UnionShopPage() {
           </div>
           <div className="tech-item">
             <div className="tech-hover-accent"></div>
-            <div className="tech-icon">🧪</div>
             <div className="tech-name">Flutter Test Suite</div>
             <div className="tech-desc">
               Comprehensive testing framework covering unit, widget, and integration tests with 201 passing cases and
@@ -359,7 +353,7 @@ export default function UnionShopPage() {
       </section>
 
       {/* Architecture */}
-      <section className="arch-section" id="architecture">
+      <section className="arch-section light-section" id="architecture">
         <div className="arch-grid">
           <div className="arch-text reveal">
             <div className="section-tag">Architecture</div>
@@ -369,7 +363,7 @@ export default function UnionShopPage() {
             </h3>
 
             <div className="arch-point">
-              <div className="arch-point-icon">🏗️</div>
+              <div className="arch-point-icon"></div>
               <div className="arch-point-text">
                 <h4>Service Layer Pattern</h4>
                 <p>
@@ -379,7 +373,7 @@ export default function UnionShopPage() {
               </div>
             </div>
             <div className="arch-point">
-              <div className="arch-point-icon">🔄</div>
+              <div className="arch-point-icon"></div>
               <div className="arch-point-text">
                 <h4>Reactive State Management</h4>
                 <p>
@@ -389,7 +383,7 @@ export default function UnionShopPage() {
               </div>
             </div>
             <div className="arch-point">
-              <div className="arch-point-icon">📦</div>
+              <div className="arch-point-icon"></div>
               <div className="arch-point-text">
                 <h4>Modular Component Design</h4>
                 <p>
@@ -435,7 +429,7 @@ export default function UnionShopPage() {
       </section>
 
       {/* Development Journey */}
-      <section style={{ padding: "100px 80px" }}>
+      <section>
         <div className="section-tag reveal">Process</div>
         <h2 className="reveal">
           How it<br />
@@ -491,7 +485,7 @@ export default function UnionShopPage() {
       </section>
 
       {/* Footer */}
-      <footer>
+      <footer className="light">
         <div className="footer-left">
           <h3>Alae Ibnoucheikh</h3>
           <p>MEng Computer Science · University of Portsmouth</p>
@@ -509,7 +503,7 @@ export default function UnionShopPage() {
             </svg>
             LinkedIn
           </a>
-          <a href="mailto:ibnoucheikhalae@gmail.com">✉ Contact</a>
+          <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
         </div>
       </footer>
     </div>
