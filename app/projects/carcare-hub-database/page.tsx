@@ -59,9 +59,6 @@ export default function CarCareHub() {
       <div className="cursor-ring" id="cursorRing"></div>
 
       <nav>
-        <a href="/" className="nav-logo">
-          CarCare<span>Hub</span>
-        </a>
         <div className="nav-links">
           <a href="#schema">Schema</a>
           <a href="#decisions">Decisions</a>
@@ -79,10 +76,10 @@ export default function CarCareHub() {
         </div>
 
         <div className="hero-left">
-          <div className="hero-tag">Relational Database Design · M30232</div>
+          <div className="hero-tag">Relational Database Design</div>
           <h1>CarCare<br /><span className="line2">Hub.</span></h1>
           <p className="hero-desc">
-            A fully normalised relational database for a real-world car service business. Designed across two coursework iterations progressively refined through ERD redesign, SQL implementation, and constraint enforcement.
+            A fully normalised relational database for a real-world car service business. Designed through two iterations of progressive refinement covering ERD redesign, SQL implementation, and constraint enforcement.
           </p>
           <div className="hero-ctas">
             <a href="#schema" className="btn-primary">Explore Schema →</a>
@@ -149,7 +146,7 @@ export default function CarCareHub() {
         <div className="stat"><div className="stat-number">40<span>+</span></div><div className="stat-label">Hours of design work</div></div>
       </div>
 
-      <section id="schema">
+      <section id="schema" className="light-section">
         <div className="section-tag reveal">Schema</div>
         <h2 className="reveal">15 tables.<br />One system.</h2>
         <p className="section-desc reveal">
@@ -189,7 +186,7 @@ export default function CarCareHub() {
         <div className="section-tag reveal">Design Decisions</div>
         <h2 className="reveal">Built to<br/>last.</h2>
         <p className="section-desc reveal">
-          Key architectural choices made across CW1 and CW2 each one improving data integrity, reducing redundancy, or resolving real design flaws.
+          Key architectural choices made across both design iterations each one improving data integrity, reducing redundancy, or resolving real design flaws.
         </p>
 
         <div className="features-layout reveal">
@@ -197,7 +194,7 @@ export default function CarCareHub() {
             <div className="feature-num">01</div>
             <div className="feature-tag">Normalisation</div>
             <div className="feature-title">Cars extracted into Car Models + Manufacturer</div>
-            <div className="feature-desc">CW1 stored manufacturer data directly in the Cars table, creating redundancy. CW2 extracted this into a separate Car_Models table eliminating duplication and achieving proper 3NF compliance.</div>
+            <div className="feature-desc">The initial design stored manufacturer data directly in the Cars table, creating redundancy. This was extracted into a separate Car_Models table eliminating duplication and achieving proper 3NF compliance.</div>
           </div>
           <div className="feature-block">
             <div className="feature-num">02</div>
@@ -209,7 +206,7 @@ export default function CarCareHub() {
             <div className="feature-num">03</div>
             <div className="feature-tag">Financial Flow</div>
             <div className="feature-title">3-table Installment Plan simplified to Invoice → Payment</div>
-            <div className="feature-desc">CW1 used three tables introducing unnecessary joins. CW2 simplified to Invoice → Payment with an inv_no_payments field preserving all business logic with far less complexity.</div>
+            <div className="feature-desc">The first version used three tables introducing unnecessary joins. This was simplified to Invoice → Payment with an inv_no_payments field preserving all business logic with far less complexity.</div>
           </div>
           <div className="feature-block">
             <div className="feature-num">04</div>
@@ -221,7 +218,7 @@ export default function CarCareHub() {
             <div className="feature-num">05</div>
             <div className="feature-tag">Data Integrity</div>
             <div className="feature-title">ENUM values corrected from numeric to named categories</div>
-            <div className="feature-desc">CW1 used numeric ENUM values (1, 2, 3) for status fields. CW2 replaced these with explicit named options like 'Scheduled', 'Completed', 'Cancelled' preventing ambiguous data entry.</div>
+            <div className="feature-desc">The initial design used numeric ENUM values (1, 2, 3) for status fields. These were replaced with explicit named options like 'Scheduled', 'Completed', 'Cancelled' preventing ambiguous data entry.</div>
           </div>
           <div className="feature-block">
             <div className="feature-num">06</div>
@@ -232,7 +229,7 @@ export default function CarCareHub() {
         </div>
       </section>
 
-      <section id="sql">
+      <section id="sql" className="light-section">
         <div className="section-tag reveal">Implementation</div>
         <h2 className="reveal">SQL that<br/>enforces rules.</h2>
         <p className="section-desc reveal">
@@ -319,54 +316,54 @@ CREATE TABLE feedback (
         </div>
       </section>
 
-      <section id="process">
+      <section id="process" className="light-section">
         <div className="section-tag reveal">Process</div>
         <h2 className="reveal">Iterated.<br/>Refined.</h2>
         <p className="section-desc reveal">
-          Developed across two graded coursework cycles each building on the feedback and shortcomings of the previous iteration.
+          Developed across two design iterations each building on the feedback and shortcomings of the previous version.
         </p>
 
         <div className="timeline reveal">
           <div className="timeline-item">
-            <div className="timeline-phase">Oct 2024 CW1</div>
+            
             <div className="timeline-title">Initial Planning & Case Study Review</div>
             <div className="timeline-desc">Analysed CarCare Hub business requirements. Identified all entities, relationships, and initial assumptions. Each team member designed an independent ERD draft before group consolidation into a single model.</div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-phase">Nov 2024 CW1</div>
+            
             <div className="timeline-title">ERD Design & Data Dictionary</div>
             <div className="timeline-desc">Produced the first full ERD with 13 tables, resolved many-to-many relationships using intersection tables, and completed a comprehensive data dictionary covering all attributes, data types, and constraints.</div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-phase">Jan 2025 CW2</div>
+            
             <div className="timeline-title">ERD Redesign After Feedback</div>
-            <div className="timeline-desc">Reviewed CW1 feedback and redesigned the ERD. Key changes: extracted Car_Models, replaced boolean availability with Schedule, introduced Feedback_Handling, corrected ENUM notations, and simplified payment structure to 15 tables.</div>
+            <div className="timeline-desc">Reviewed earlier feedback and redesigned the ERD. Key changes: extracted Car_Models, replaced boolean availability with Schedule, introduced Feedback_Handling, corrected ENUM notations, and simplified payment structure to 15 tables.</div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-phase">Feb 2025 CW2</div>
+            
             <div className="timeline-title">SQL Implementation & Debugging</div>
             <div className="timeline-desc">Wrote full CREATE TABLE statements, INSERT data, and tested with SELECT/JOIN queries. Debugged constraint violations, foreign key dependencies, and data type mismatches in practical sessions.</div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-phase">Feb 2025 CW2</div>
+            
             <div className="timeline-title">Reflective Analysis & Final Submission</div>
-            <div className="timeline-desc">Documented all design decisions, compared CW1 vs CW2 ERDs, and wrote a structured reflective analysis covering removals, additions, cardinality corrections, and constraint improvements.</div>
+            <div className="timeline-desc">Documented all design decisions, compared and contrasted both ERD versions, and wrote a structured reflective analysis covering removals, additions, cardinality corrections, and constraint improvements.</div>
           </div>
         </div>
       </section>
 
-      <footer>
+      <footer className="light">
         <div className="footer-left">
           <h3>Alae Ibnoucheikh</h3>
           <p>MEng Computer Science · University of Portsmouth</p>
-          <p style={{ marginTop: '4px', fontSize: '12px', color: '#444' }}>Database Systems Development · M30232</p>
+          <p style={{ marginTop: '4px', fontSize: '12px', color: '#444' }}>Database Systems Development</p>
         </div>
         <div className="footer-links">
           <a href="https://www.linkedin.com/in/alae-ibnou-cheikh-a9994b334/" target="_blank" rel="noreferrer">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
-          <a href="mailto:ibnoucheikhalae@gmail.com">✉ Contact</a>
+          <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
         </div>
       </footer>
     </>
