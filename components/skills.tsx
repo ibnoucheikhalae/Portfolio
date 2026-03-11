@@ -105,7 +105,7 @@ export function Skills() {
       </div>
 
       {/* 4-col skill cards */}
-      <div className="grid gap-[14px] mb-[14px] max-lg:grid-cols-2 max-md:grid-cols-1" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+      <div className="grid grid-cols-4 gap-[14px] mb-[14px] max-lg:grid-cols-2 max-md:grid-cols-1">
         {skillCards.map((card, i) => (
           <AnimatedItem key={card.title} index={i} staggerMs={80}>
             <div
