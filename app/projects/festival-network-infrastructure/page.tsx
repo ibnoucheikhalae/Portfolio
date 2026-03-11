@@ -1,558 +1,430 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft, Wifi, Shield, Zap, Network, Database, Server } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import './festival.css';
 
-const fadeInVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.6 },
-  }),
-}
+const assumptions = [
+  'Network must support 35,000 attendees',
+  'Reliable connectivity for staff and payment terminals',
+  'Secure segmentation between staff, guest, and administrative networks',
+  'Wireless coverage across the showground',
+  'High uptime and redundancy',
+  'Weather-resistant outdoor infrastructure',
+];
+
+const securityAreas = [
+  {
+    title: 'Physical Security',
+    items: [
+      'Secure equipment cabinets',
+      'Restricted access network rooms',
+      'Protected underground cabling',
+      'Weather-resistant hardware',
+    ],
+  },
+  {
+    title: 'Digital Security',
+    items: [
+      'VLAN segmentation',
+      'Firewall rules',
+      'Access control lists',
+      'VPN access for administrators',
+      'Port security and DHCP snooping',
+    ],
+  },
+  {
+    title: 'Environmental Security',
+    items: [
+      'Weatherproof hardware',
+      'Protected cabling routes',
+      'Monitoring systems',
+      'Redundant power and equipment placement',
+    ],
+  },
+];
+
+const devices = [
+  { name: 'Cisco 1921/K9 Router', specs: 'Integrated Services Router', role: 'Core routing device for network traffic management and inter-VLAN routing' },
+  { name: 'Cisco CBS350-48P-4G Switch', specs: '48-port Managed Gigabit Switch', role: 'Primary distribution switch with PoE for access point power delivery' },
+  { name: 'Cisco SF350-24P Switch', specs: '24-port Managed Gigabit Switch', role: 'Secondary switches for network segmentation and VLAN trunking' },
+  { name: 'Excel Cat6 UTP Cable', specs: 'Copper Twisted Pair', role: 'Ethernet cabling for device connections and access point backhaul' },
+  { name: 'RS PRO OS2 Fibre Cable', specs: 'Single-mode Optical Fiber', role: 'Long-distance backbone links between network zones and main distribution' },
+  { name: 'Ubiquiti UniFi AP AC HD', specs: 'High-Density Access Point', role: 'Wireless coverage for guest network with 4x4 MIMO technology' },
+];
+
+const costs = [
+  { component: 'Cisco SF350-24P Switch', unitPrice: '£643.60', quantity: '29', total: '£18,560' },
+  { component: 'Cisco CBS350-48P-4G Switch', unitPrice: '£1,026', quantity: '10', total: '£10,260' },
+  { component: 'Cisco 1921/K9 Router', unitPrice: '£253.71', quantity: '5', total: '£1,268.55' },
+  { component: 'RS PRO OS2 Fibre Optic Cable', unitPrice: '£1.17/m', quantity: '6,296m', total: '£7,366.32' },
+  { component: 'Excel Cat6 UTP Cable', unitPrice: '£0.48/m', quantity: '2,451m', total: '£1,176.48' },
+  { component: 'Ubiquiti UniFi AP AC HD', unitPrice: '£319.00', quantity: '63', total: '£20,097' },
+  { component: 'Underground Enclosure Box', unitPrice: '£25', quantity: '10', total: '£250' },
+  { component: 'RJ45 Outdoor Connectors', unitPrice: '£4', quantity: '126', total: '£504' },
+  { component: 'Warning Tape', unitPrice: '£1/m', quantity: '8,747m', total: '£8,747' },
+  { component: 'Wireless AP & Switches Covers', unitPrice: '£32.99', quantity: '73', total: '£2,407.27' },
+  { component: 'HDPE Conduit (100m rolls)', unitPrice: '£90', quantity: '63', total: '£5,670' },
+  { component: 'Workers Wages', unitPrice: '£20/hr', quantity: '990 hrs', total: '£19,800' },
+];
 
 export default function FestivalNetworkPage() {
-  const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({})
-  const [expandedImage, setExpandedImage] = useState<string | null>(null)
-
-  const observeElement = (id: string) => {
-    if (typeof window !== "undefined") {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [id]: true }))
-          }
-        },
-        { threshold: 0.1 }
-      )
-
-      const element = document.getElementById(id)
-      if (element) observer.observe(element)
-    }
-  }
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
   useEffect(() => {
-    const sections = [
-      "hero",
-      "introduction",
-      "assumptions",
-      "security",
-      "logical",
-      "wireless",
-      "physical",
-      "devices",
-      "costs",
-    ]
-    sections.forEach(observeElement)
-  }, [])
-
-  const assumptions = [
-    "Network must support 35,000 attendees",
-    "Reliable connectivity for staff and payment terminals",
-    "Secure segmentation between staff, guest, and administrative networks",
-    "Wireless coverage across the showground",
-    "High uptime and redundancy",
-    "Weather-resistant outdoor infrastructure",
-  ]
-
-  const securityAreas = [
-    {
-      title: "Physical Security",
-      icon: <Shield className="h-6 w-6" />,
-      items: [
-        "Secure equipment cabinets",
-        "Restricted access network rooms",
-        "Protected underground cabling",
-        "Weather-resistant hardware",
-      ],
-    },
-    {
-      title: "Digital Security",
-      icon: <Network className="h-6 w-6" />,
-      items: [
-        "VLAN segmentation",
-        "Firewall rules",
-        "Access control lists",
-        "VPN access for administrators",
-        "Port security and DHCP snooping",
-      ],
-    },
-    {
-      title: "Environmental Security",
-      icon: <Zap className="h-6 w-6" />,
-      items: [
-        "Weatherproof hardware",
-        "Protected cabling routes",
-        "Monitoring systems",
-        "Redundant power and equipment placement",
-      ],
-    },
-  ]
-
-  const devices = [
-    {
-      name: "Cisco 1921/K9 Router",
-      specs: "Integrated Services Router",
-      role: "Core routing device for network traffic management and inter-VLAN routing",
-      icon: <Network className="h-8 w-8" />,
-    },
-    {
-      name: "Cisco CBS350-48P-4G Switch",
-      specs: "48-port Managed Gigabit Switch",
-      role: "Primary distribution switch with PoE for access point power delivery",
-      icon: <Server className="h-8 w-8" />,
-    },
-    {
-      name: "Cisco SF350-24P Switch",
-      specs: "24-port Managed Gigabit Switch",
-      role: "Secondary switches for network segmentation and VLAN trunking",
-      icon: <Server className="h-8 w-8" />,
-    },
-    {
-      name: "Excel Cat6 UTP Cable",
-      specs: "Copper Twisted Pair",
-      role: "Ethernet cabling for device connections and access point backhaul",
-      icon: <Database className="h-8 w-8" />,
-    },
-    {
-      name: "RS PRO OS2 Fibre Cable",
-      specs: "Single-mode Optical Fiber",
-      role: "Long-distance backbone links between network zones and main distribution",
-      icon: <Wifi className="h-8 w-8" />,
-    },
-    {
-      name: "Ubiquiti UniFi AP AC HD",
-      specs: "High-Density Access Point",
-      role: "Wireless coverage for guest network with 4x4 MIMO technology",
-      icon: <Wifi className="h-8 w-8" />,
-    },
-  ]
-
-  const costs = [
-    { component: "Cisco SF350-24P Switch", unitPrice: "£643.60", quantity: 29, total: "£18,560" },
-    { component: "Cisco CBS350-48P-4G Switch", unitPrice: "£1,026", quantity: 10, total: "£10,260" },
-    { component: "Cisco 1921/K9 Router", unitPrice: "£253.71", quantity: 5, total: "£1,268.55" },
-    { component: "RS PRO OS2 Fibre Optic Cable", unitPrice: "£1.17/m", quantity: "6,296m", total: "£7,366.32" },
-    { component: "Excel Cat6 UTP Cable", unitPrice: "£0.48/m", quantity: "2,451m", total: "£1,176.48" },
-    { component: "Ubiquiti UniFi AP AC HD", unitPrice: "£319.00", quantity: 63, total: "£20,097" },
-    { component: "Underground Enclosure Box", unitPrice: "£25", quantity: 10, total: "£250" },
-    { component: "RJ45 Outdoor Connectors", unitPrice: "£4", quantity: 126, total: "£504" },
-    { component: "Warning Tape", unitPrice: "£1/m", quantity: "8,747m", total: "£8,747" },
-    { component: "Wireless AP & Switches Covers", unitPrice: "£32.99", quantity: 73, total: "£2,407.27" },
-    { component: "HDPE Conduit (100m rolls)", unitPrice: "£90", quantity: 63, total: "£5,670" },
-    { component: "Workers Wages", unitPrice: "£20/hr", quantity: "990 hrs", total: "£19,800" },
-  ]
-
-  const totalCost = "£94,909.62"
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX; my = e.clientY;
+      if (cursor) { cursor.style.left = (mx - 6) + 'px'; cursor.style.top = (my - 6) + 'px'; }
+    };
+    document.addEventListener('mousemove', onMove);
+    const animRing = () => {
+      rx += (mx - rx - 20) * 0.12; ry += (my - ry - 20) * 0.12;
+      if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+      requestAnimationFrame(animRing);
+    };
+    animRing();
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(r => obs.observe(r));
+    return () => { document.removeEventListener('mousemove', onMove); obs.disconnect(); };
+  }, []);
 
   return (
-    <>{/* Image Modal */}
+    <>
+      <div className="cursor" id="cursor"></div>
+      <div className="cursor-ring" id="cursorRing"></div>
+
       {expandedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          onClick={() => setExpandedImage(null)}
-        >
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setExpandedImage(null)}
-              className="absolute -top-10 right-0 text-white hover:text-primary transition-colors z-10 group"
-            >
-              <svg
-                className="w-8 h-8 group-hover:scale-110 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <Image
-              src={`/images/${expandedImage}.jpg`}
-              alt="Expanded view"
-              fill
-              className="object-contain"
-            />
+        <div className="modal-overlay" onClick={() => setExpandedImage(null)}>
+          <div className="modal-inner" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setExpandedImage(null)}>×</button>
+            <Image src={`/images/${expandedImage}.jpg`} alt="Expanded" width={1200} height={800} className="modal-img" />
           </div>
         </div>
       )}
 
-      
-      <main className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section
-          id="hero"
-          className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-24 overflow-hidden"
-        >
-          {/* Animated background grid */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-            <svg className="absolute inset-0 opacity-20" width="100%" height="100%">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+      <nav>
+        <div className="nav-links">
+          <a href="#intro">Introduction</a>
+          <a href="#logical">Logical Design</a>
+          <a href="#physical">Physical Design</a>
+          <a href="#devices">Devices</a>
+          <a href="#costs">Costs</a>
+        </div>
+        <a href="/projects" className="nav-back">← Back to Projects</a>
+      </nav>
+
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-bg">
+          <div className="hero-orb orb1"></div>
+          <div className="hero-orb orb2"></div>
+        </div>
+        <div className="hero-left">
+          <div className="hero-tag">University of Portsmouth · Network Infrastructure Design</div>
+          <h1>Festival<br /><span className="line2">Network.</span></h1>
+          <p className="hero-desc">A full-scale network infrastructure design for a 35,000-attendee outdoor festival covering logical topology, VLAN segmentation, wireless coverage, physical cable routing, and a detailed £94K cost breakdown.</p>
+          <div className="hero-ctas">
+            <a href="#logical" className="btn-primary">View Design →</a>
+            <a href="#costs" className="btn-secondary">Cost Breakdown</a>
+          </div>
+        </div>
+
+        <div className="hero-right">
+          <div className="float-card float-card-1">
+            <div className="float-label">Total Attendees</div>
+            <div className="float-value">35K+</div>
+            <div className="float-sub">Concurrent users</div>
           </div>
 
-          <div className="relative max-w-4xl mx-auto text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Link>
-
-            <div className="space-y-6">
-              <div className="flex justify-center gap-2 flex-wrap">
-                {["Networking", "Infrastructure Design", "Security Architecture", "Wireless Networking"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
-                Festival Network Infrastructure
-              </h1>
-
-              <p className="text-xl text-muted-foreground">
-                Secure and scalable network infrastructure for a 35,000+ attendee outdoor event
-              </p>
-
-              <p className="max-w-2xl mx-auto text-base text-muted-foreground leading-relaxed">
-                A comprehensive network infrastructure design featuring full logical and physical architecture,
-                including VLAN segmentation, wireless coverage, security protocols, and cost optimization for a
-                large-scale outdoor festival environment.
-              </p>
+          <div className="net-card">
+            <div className="net-card-bar">
+              <div className="d-dot r"></div><div className="d-dot y"></div><div className="d-dot g"></div>
+              <span className="net-card-title">network_topology.pkt</span>
             </div>
-          </div>
-        </section>
-
-        {/* Introduction Section */}
-        <section id="introduction" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-4xl">
-            <div className="rounded-2xl border border-border bg-card/50 backdrop-blur p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-foreground mb-6">Introduction</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  This project designs the complete network infrastructure for a large-scale event environment
-                  supporting 35,000+ attendees. The design addresses critical challenges inherent to outdoor events
-                  while maintaining security, reliability, and scalability.
-                </p>
-                <p className="font-semibold text-foreground">Key Challenges:</p>
-                <ul className="space-y-2 ml-4">
-                  <li>• High number of concurrent users requiring seamless connectivity</li>
-                  <li>• Outdoor environment subject to weather and environmental factors</li>
-                  <li>• Security risks requiring strict access control and network segmentation</li>
-                  <li>• Reliable connectivity for staff operations, payment systems, and public access</li>
-                  <li>• Cost optimization without compromising performance or security</li>
-                </ul>
+            <div className="net-body">
+              <div className="net-banner">
+                <div className="net-banner-label">Network Design</div>
+                <div className="net-banner-val">Festival Ground</div>
+                <div className="net-banner-sub">Cisco IOS · VLAN Segmented · Managed</div>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label"><span className="vlan-dot blue"></span>VLAN 100 Guest</span>
+                <span className="vlan-val">Public WiFi</span>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label"><span className="vlan-dot amber"></span>VLAN 200 Staff</span>
+                <span className="vlan-val">POS + Ops</span>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label"><span className="vlan-dot lime"></span>VLAN 300 Admin</span>
+                <span className="vlan-val">Management</span>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label"><span className="vlan-dot slate"></span>Backbone</span>
+                <span className="vlan-val">OS2 Fibre</span>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label">Cisco switches</span>
+                <span className="vlan-val">39 units</span>
+              </div>
+              <div className="net-vlan-row">
+                <span className="vlan-label">Fibre runs</span>
+                <span className="vlan-val">6,296m</span>
+              </div>
+              <div className="net-stat-pill">
+                <div className="net-stat-text">63 APs deployed</div>
+                <div className="net-stat-text">Total: £94,909.62</div>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Assumptions Section */}
-        <section id="assumptions" className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Project Assumptions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {assumptions.map((assumption, i) => (
-                <div
-                  key={i}
-                  className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-primary font-bold text-sm">{i + 1}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{assumption}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="float-card float-card-2">
+            <div className="float-label">Access Points</div>
+            <div className="float-value">63</div>
+            <div className="float-sub">UniFi AP AC HD</div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Security Architecture Section */}
-        <section id="security" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Security Architecture</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {securityAreas.map((area, i) => (
-                <div
-                  key={i}
-                  className="group rounded-2xl border border-border bg-card p-8 hover:border-primary/50 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-                >
-                  <div className="inline-flex h-12 w-12 rounded-lg bg-primary/10 text-primary items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-4">{area.title}</h3>
-                  <ul className="space-y-3">
-                    {area.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-muted-foreground">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+      {/* Stats */}
+      <div className="stats reveal">
+        <div className="stat"><div className="stat-number">35K+</div><div className="stat-label">Attendees on the network</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">63</div><div className="stat-label">Wireless access points</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">3</div><div className="stat-label">VLANs Guest, Staff, Admin</div></div>
+        <div className="stat-divider"></div>
+        <div className="stat"><div className="stat-number">£94.9K</div><div className="stat-label">Total project cost</div></div>
+      </div>
 
-        {/* Logical Network Design Section */}
-        <section id="logical" className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Logical Network Design</h2>
-
-            <div className="rounded-2xl border border-border bg-card p-8 mb-12">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Design Key</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { label: "Guest Network", color: "bg-blue-400" },
-                  { label: "Staff Network", color: "bg-amber-400" },
-                  { label: "Admin Network", color: "bg-primary" },
-                  { label: "Backbone", color: "bg-slate-600" },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3">
-                    <div className={`h-4 w-4 rounded-full ${item.color}`} />
-                    <span className="text-sm text-muted-foreground">{item.label}</span>
-                  </div>
-                ))}
+      {/* Introduction */}
+      <section id="intro" className="light-section">
+        <div className="section-tag reveal">Introduction</div>
+        <h2 className="reveal">Designed for<br />scale and security.</h2>
+        <p className="section-desc reveal">A comprehensive network infrastructure solution for a large-scale outdoor event addressing the unique demands of high-density wireless environments, outdoor deployment, and strict network segmentation.</p>
+        <div className="intro-card reveal">
+          <p>This project designs the complete network infrastructure for a large-scale event environment supporting 35,000+ attendees. The design addresses critical challenges inherent to outdoor events while maintaining security, reliability, and scalability.</p>
+          <div className="intro-challenges">
+            <div className="intro-challenge-title">Key Challenges Addressed</div>
+            {[
+              'High number of concurrent users requiring seamless connectivity',
+              'Outdoor environment subject to weather and environmental factors',
+              'Security risks requiring strict access control and network segmentation',
+              'Reliable connectivity for staff operations, payment systems, and public access',
+              'Cost optimisation without compromising performance or security',
+            ].map((c, i) => (
+              <div key={i} className="challenge-item">
+                <div className="challenge-dot"></div>
+                <span>{c}</span>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              {["larea1", "larea2", "larea3"].map((img, i) => (
-                <div
-                  key={i}
-                  className="group relative h-64 rounded-2xl border border-border overflow-hidden bg-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer"
-                  onClick={() => setExpandedImage(img)}
-                >
-                  <Image
-                    src={`/images/${img}.jpg`}
-                    alt={`Logical Network Area ${i + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium">
-                      Click to expand
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="rounded-2xl border border-border bg-card p-8">
-              <p className="text-muted-foreground leading-relaxed">
-                The logical design employs strict VLAN segmentation to isolate guest, staff, and administrative
-                traffic. Guest network (VLAN 100) provides public WiFi with bandwidth limitations. Staff network
-                (VLAN 200) connects point-of-sale terminals and operational systems. Administrative network (VLAN
-                300) secures management traffic with restricted access. Layer 3 switches handle inter-VLAN routing
-                with access control lists enforcing security policies. This architecture ensures scalability while
-                preventing unauthorized access between network segments.
-              </p>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Transition Text */}
-        <section className="px-6 py-12">
-          <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-card p-8 text-center">
-            <p className="text-muted-foreground leading-relaxed">
-              After defining the logical network structure and security framework, the next critical step involves
-              implementing this design across the physical showground infrastructure, accounting for cable routing,
-              equipment placement, and outdoor environmental factors.
-            </p>
-          </div>
-        </section>
-
-        {/* Wireless Coverage Section */}
-        <section id="wireless" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Wireless Access Point Coverage</h2>
-
-            <div className="relative h-96 md:h-[500px] rounded-2xl border border-border overflow-hidden bg-card mb-12">
-              <Image
-                src="/images/wap-coverage.jpg"
-                alt="Wireless Access Point Coverage Plan"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-
-            <div className="rounded-2xl border border-border bg-card p-8">
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Wireless coverage planning ensures seamless connectivity across the entire 35,000+ person showground.
-                The deployment strategy utilizes 63 Ubiquiti UniFi AP AC HD access points distributed in high-density
-                clusters near main attractions, seating areas, and vendor zones.
-              </p>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Coverage density calculated based on 1 AP per 500-800 concurrent users</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>5GHz band (802.11ac) for high-capacity areas; 2.4GHz for extended range</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Access points connected via fiber backbone and Cat6 backhaul for redundancy</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Capacity planning allows 50+ Mbps throughput per user during peak loads</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Physical Network Design Section */}
-        <section id="physical" className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Physical Network Design</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              {["parea1", "parea2", "parea3"].map((img, i) => (
-                <div
-                  key={i}
-                  className="group relative h-64 rounded-2xl border border-border overflow-hidden bg-card hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer"
-                  onClick={() => setExpandedImage(img)}
-                >
-                  <Image
-                    src={`/images/${img}.jpg`}
-                    alt={`Physical Network Area ${i + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium">
-                      Click to expand
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="rounded-2xl border border-border bg-card p-8">
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                The physical infrastructure spans the entire showground with a hierarchical topology. Fiber backbone
-                links connect three distribution hubs using single-mode OS2 cables, providing low-latency core
-                connectivity with 10+ Gbps capacity.
-              </p>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Fiber backbone runs through protected underground ducts and aerial routes</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Access point deployment uses weather-resistant PoE injectors for power delivery</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Cable routing avoids high-traffic zones and implements redundant paths</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span>Cisco switches positioned in secure, climate-controlled equipment tents</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Devices Section */}
-        <section id="devices" className="px-6 py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Devices Used</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {devices.map((device, i) => (
-                <div
-                  key={i}
-                  className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/50 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-                >
-                  <div className="inline-flex h-10 w-10 rounded-lg bg-primary/10 text-primary items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    {device.icon}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-1">{device.name}</h3>
-                  <p className="text-xs text-primary font-medium mb-3">{device.specs}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{device.role}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Cost Breakdown Section */}
-        <section id="costs" className="px-6 py-24 md:py-32 bg-card/30">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Project Cost Breakdown</h2>
-
-            <div className="rounded-2xl border border-border bg-card overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-card border-b border-border sticky top-0">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Component</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Unit Price</th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">Quantity</th>
-                      <th className="px-6 py-4 text-right text-sm font-semibold text-foreground">Total Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border">
-                    {costs.map((row, i) => (
-                      <tr key={i} className={i % 2 === 0 ? "bg-background/50" : ""}>
-                        <td className="px-6 py-4 text-sm text-muted-foreground">{row.component}</td>
-                        <td className="px-6 py-4 text-sm text-muted-foreground">{row.unitPrice}</td>
-                        <td className="px-6 py-4 text-sm text-muted-foreground">{row.quantity}</td>
-                        <td className="px-6 py-4 text-right text-sm font-medium text-foreground">{row.total}</td>
-                      </tr>
-                    ))}
-                    <tr className="bg-primary/10 border-t-2 border-primary/30">
-                      <td colSpan={3} className="px-6 py-4 text-sm font-semibold text-foreground">
-                        Total Project Cost
-                      </td>
-                      <td className="px-6 py-4 text-right text-lg font-bold text-primary">{totalCost}</td>
-                    </tr>
-                  </tbody>
-                </table>
+      {/* Assumptions */}
+      <section className="assumptions-section">
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 48px' }}>
+          <div className="section-tag reveal">Project Assumptions</div>
+          <h2 className="section-h2 reveal">Design constraints<br />&amp; requirements.</h2>
+          <div className="assumptions-grid reveal">
+            {assumptions.map((a, i) => (
+              <div key={i} className="assumption-card">
+                <div className="assumption-num">{i + 1}</div>
+                <div className="assumption-text">{a}</div>
               </div>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer CTA */}
-        <section className="px-6 py-24">
-          <div className="mx-auto max-w-2xl text-center rounded-2xl border border-border bg-card p-12">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Interested in Network Design?</h3>
-            <p className="text-muted-foreground mb-8">
-              Let's discuss your infrastructure challenges and build scalable, secure solutions.
-            </p>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary-hover hover:scale-[1.03] hover:shadow-lg hover:shadow-primary/20"
-            >
-              Get In Touch
-              <ArrowLeft className="h-4 w-4 rotate-180" />
-            </Link>
+      {/* Security */}
+      <section className="light-section">
+        <div className="section-tag reveal">Security Architecture</div>
+        <h2 className="reveal">Three layers<br />of protection.</h2>
+        <p className="section-desc reveal">Security is enforced at the physical, digital, and environmental levels ensuring the network remains resilient against both accidental misuse and deliberate threats during the event.</p>
+        <div className="security-grid reveal">
+          {securityAreas.map((area, i) => (
+            <div key={i} className="security-card">
+              <div className="security-accent"></div>
+              <div className="security-title">{area.title}</div>
+              {area.items.map((item, j) => (
+                <div key={j} className="security-item">
+                  <div className="security-bullet"></div>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Logical Design */}
+      <section id="logical" className="design-section">
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 48px' }}>
+          <div className="section-tag reveal">Logical Network Design</div>
+          <h2 className="section-h2 reveal">VLAN architecture<br />&amp; routing.</h2>
+          <p className="section-desc reveal">The logical design employs strict VLAN segmentation separating guest, staff, and administrative traffic with Layer 3 inter-VLAN routing and ACL-enforced security policies.</p>
+          <div className="key-legend">
+            {[
+              { label: 'Guest Network (VLAN 100)', color: '#4fc3f7' },
+              { label: 'Staff Network (VLAN 200)', color: '#ff6b35' },
+              { label: 'Admin Network (VLAN 300)', color: '#c8ff00' },
+              { label: 'Backbone', color: '#555' },
+            ].map((k, i) => (
+              <div key={i} className="key-item">
+                <div className="key-dot" style={{ background: k.color }}></div>
+                {k.label}
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
+          <div className="image-grid reveal">
+            {['larea1', 'larea2', 'larea3'].map((img, i) => (
+              <div key={i} className="image-card" onClick={() => setExpandedImage(img)}>
+                <Image src={`/images/${img}.jpg`} alt={`Logical Area ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                <div className="image-card-overlay">
+                  <span className="image-card-label">Click to expand</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="design-desc-card">
+            <p>The logical design employs strict VLAN segmentation to isolate guest, staff, and administrative traffic. Guest network (VLAN 100) provides public WiFi with bandwidth limitations. Staff network (VLAN 200) connects point-of-sale terminals and operational systems. Administrative network (VLAN 300) secures management traffic with restricted access.</p>
+            <p>Layer 3 switches handle inter-VLAN routing with access control lists enforcing security policies. This architecture ensures scalability while preventing unauthorized access between network segments.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Wireless Coverage */}
+      <section className="light-section">
+        <div className="section-tag reveal">Wireless Coverage</div>
+        <h2 className="reveal">63 APs.<br />Full showground.</h2>
+        <p className="section-desc reveal">Coverage planning ensures seamless connectivity across the entire showground using 63 Ubiquiti UniFi AP AC HD access points in high-density clusters near attractions, seating areas, and vendor zones.</p>
+        <div className="wap-image-wrap reveal">
+          <Image src="/images/wap-coverage.jpg" alt="Wireless AP Coverage Plan" fill style={{ objectFit: 'cover' }} />
+        </div>
+        <div className="design-desc-card reveal">
+          {[
+            'Coverage density calculated based on 1 AP per 500–800 concurrent users',
+            '5GHz band (802.11ac) for high-capacity areas; 2.4GHz for extended range',
+            'Access points connected via fibre backbone and Cat6 backhaul for redundancy',
+            'Capacity planning allows 50+ Mbps throughput per user during peak loads',
+          ].map((b, i) => (
+            <div key={i} className="design-bullet">
+              <div className="design-bullet-dot"></div>
+              <span>{b}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Physical Design */}
+      <section id="physical" className="design-section">
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 48px' }}>
+          <div className="section-tag reveal">Physical Network Design</div>
+          <h2 className="section-h2 reveal">Three zones.<br />One backbone.</h2>
+          <p className="section-desc reveal">Physical infrastructure spans the full showground with a hierarchical topology fibre backbone linking three distribution hubs, with Cat6 access layer running to each access point and device.</p>
+          <div className="image-grid reveal">
+            {['parea1', 'parea2', 'parea3'].map((img, i) => (
+              <div key={i} className="image-card" onClick={() => setExpandedImage(img)}>
+                <Image src={`/images/${img}.jpg`} alt={`Physical Area ${i + 1}`} fill style={{ objectFit: 'cover' }} />
+                <div className="image-card-overlay">
+                  <span className="image-card-label">Click to expand</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="design-desc-card">
+            <p>The physical infrastructure spans the entire showground with a hierarchical topology. Fibre backbone links connect three distribution hubs using single-mode OS2 cables, providing low-latency core connectivity with 10+ Gbps capacity.</p>
+            {[
+              'Fibre backbone runs through protected underground ducts and aerial routes',
+              'Access point deployment uses weather-resistant PoE injectors for power delivery',
+              'Cable routing avoids high-traffic zones and implements redundant paths',
+              'Cisco switches positioned in secure, climate-controlled equipment tents',
+            ].map((b, i) => (
+              <div key={i} className="design-bullet">
+                <div className="design-bullet-dot"></div>
+                <span>{b}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Devices */}
+      <section id="devices" className="devices-section light-section">
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 48px' }}>
+          <div className="section-tag reveal">Devices Used</div>
+          <h2 className="section-h2 reveal">Cisco-grade<br />hardware throughout.</h2>
+          <p className="section-desc reveal">Every device selected for reliability, PoE capability, managed switching features, and outdoor-rated weatherproofing appropriate for a multi-day festival environment.</p>
+          <div className="devices-grid reveal">
+            {devices.map((d, i) => (
+              <div key={i} className="device-card">
+                <div className="device-name">{d.name}</div>
+                <div className="device-specs">{d.specs}</div>
+                <div className="device-role">{d.role}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Costs */}
+      <section id="costs">
+        <div className="section-tag reveal">Cost Breakdown</div>
+        <h2 className="reveal">Full project<br />cost analysis.</h2>
+        <p className="section-desc reveal">A detailed cost breakdown covering all hardware, cabling, physical infrastructure, and labour required to deploy the network across the festival showground.</p>
+        <div className="cost-table-wrap reveal">
+          <table className="cost-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {costs.map((row, i) => (
+                <tr key={i}>
+                  <td>{row.component}</td>
+                  <td>{row.unitPrice}</td>
+                  <td>{row.quantity}</td>
+                  <td>{row.total}</td>
+                </tr>
+              ))}
+              <tr className="total-row">
+                <td colSpan={3}>Total Project Cost</td>
+                <td>£94,909.62</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer className="light">
+        <div className="footer-left">
+          <h3>Alae Ibnoucheikh</h3>
+          <p>MEng Computer Science · University of Portsmouth</p>
+          <p style={{ marginTop: '4px', fontSize: '12px', color: '#444' }}>Network Infrastructure Design · Year 2</p>
+        </div>
+        <div className="footer-links">
+          <a href="https://www.linkedin.com/in/alae-ibnou-cheikh-a9994b334/" target="_blank" rel="noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
+        </div>
+      </footer>
     </>
-  )
+  );
 }
+
