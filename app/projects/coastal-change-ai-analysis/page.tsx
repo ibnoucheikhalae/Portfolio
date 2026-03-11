@@ -119,7 +119,7 @@ export default function CoastalChangePage() {
       </div>
 
       {/* Findings */}
-      <section id="findings">
+      <section id="findings" className="light-section">
         <div className="section-tag reveal">Key Findings</div>
         <h2 className="reveal">The coast is<br />changing fast.</h2>
         <p className="section-desc reveal">Satellite imagery, LiDAR elevation data, and NDVI vegetation analysis compared across 2000 and 2023 reveal four interconnected patterns of coastal change.</p>
@@ -174,7 +174,7 @@ export default function CoastalChangePage() {
         <div className="process-grid reveal">
           <div className="process-item">
             <div className="process-accent"></div>
-            <div className="process-icon">🌊</div>
+
             <div className="process-name">Erosion</div>
             <div className="process-tag">Happisburgh · Overstrand · Cromer</div>
             <div className="process-desc">Wave undercutting and mass movement strip soft sedimentary cliffs continuously. High-energy North Sea exposure leaves these formations permanently vulnerable and rising sea levels mean each storm surge reaches further inland than the last.</div>
@@ -185,7 +185,7 @@ export default function CoastalChangePage() {
           </div>
           <div className="process-item">
             <div className="process-accent"></div>
-            <div className="process-icon">🏖️</div>
+
             <div className="process-name">Accretion</div>
             <div className="process-tag">Blakeney Point · Cley Marshes</div>
             <div className="process-desc">In sheltered, low-energy environments, tidal currents deposit sand and silt to build new land. Growing dune systems and mudflats act as natural sea defences a self-reinforcing system as long as sediment supply from eroding sections remains adequate.</div>
@@ -196,7 +196,7 @@ export default function CoastalChangePage() {
           </div>
           <div className="process-item">
             <div className="process-accent"></div>
-            <div className="process-icon">📈</div>
+
             <div className="process-name">Sea-Level Rise</div>
             <div className="process-tag">Entire North Norfolk coastline</div>
             <div className="process-desc">The multiplier effect SLR amplifies both erosion and flooding simultaneously. Low-lying marshlands face saltwater intrusion degrading vegetation; cliff areas face waves reaching higher with each surge. East Anglia&apos;s land subsidence compounds the global SLR rate.</div>
@@ -209,7 +209,7 @@ export default function CoastalChangePage() {
       </section>
 
       {/* AI Prototype */}
-      <section id="ai" className="ai-section">
+      <section id="ai" className="ai-section light-section">
         <div className="ai-grid">
           <div className="ai-text reveal">
             <div className="section-tag">AI Prototype</div>
@@ -299,7 +299,7 @@ export default function CoastalChangePage() {
       </section>
 
       {/* Timeline */}
-      <section id="process" className="timeline-section">
+      <section id="process" className="timeline-section light-section">
         <div className="section-tag reveal">Research Process</div>
         <h2 className="reveal">How it<br />was built.</h2>
         <p className="section-desc reveal">From initial coastline scoping through to AI prototype development and impact assessment the full research and build process.</p>
@@ -333,7 +333,7 @@ export default function CoastalChangePage() {
         </div>
       </section>
 
-      <footer>
+      <footer className="light">
         <div className="footer-left">
           <h3>Alae Ibnoucheikh</h3>
           <p>MEng Computer Science · University of Portsmouth</p>
@@ -344,7 +344,7 @@ export default function CoastalChangePage() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
-          <a href="mailto:ibnoucheikhalae@gmail.com">✉ Contact</a>
+          <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
         </div>
       </footer>
     </>

@@ -997,6 +997,37 @@ h2 {
   line-height: 1.6;
 }
 
+/* ── Light sections (cream) ── */
+.light-section { background: #f7f3ee; }
+.light-section .section-tag { color: #888; }
+.light-section h2 { color: #111010; }
+.light-section .section-desc { color: #555; }
+.light-section .feature-block { background: #fff; border: 1px solid rgba(0,0,0,0.08); }
+.light-section .feature-block:hover { background: #faf7f3; }
+.light-section .feature-block.accent-block { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); }
+.light-section .feature-block.accent-block .feature-title { color: #111010; }
+.light-section .feature-block.accent-block .feature-desc { color: rgba(0,0,0,0.55); }
+.light-section .feature-block.accent-block .feature-num { color: rgba(0,0,0,0.75); }
+.light-section .feature-num { color: rgba(0,0,0,0.75); }
+.light-section .feature-title { color: #111010; }
+.light-section .feature-desc { color: #555; }
+.light-section.arch-section { background: #f7f3ee; }
+.light-section .arch-diagram { background: #fff; border-color: rgba(0,0,0,0.08); }
+.light-section .arch-layer { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+.light-section .arch-layer:hover { border-color: rgba(0,0,0,0.2); }
+.light-section .arch-label { color: #111010; }
+.light-section .arch-sub { color: #666; }
+.light-section .arch-arrow { color: #aaa; }
+.light-section .arch-text h3 { color: #111010; }
+.light-section .arch-point-icon { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); }
+.light-section .arch-point-text h4 { color: #111010; }
+.light-section .arch-point-text p { color: #555; }
+footer.light { background: #f7f3ee; border-top-color: rgba(0,0,0,0.08); }
+footer.light .footer-left h3 { color: #111010; }
+footer.light .footer-left p { color: #555; }
+footer.light .footer-links a { color: #666; }
+footer.light .footer-links a:hover { color: #111010; }
+
 /* Footer */
 footer {
   padding: 60px 80px;
@@ -1130,5 +1161,37 @@ footer {
   .footer-links {
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  nav {
+    padding: 16px 20px;
+  }
+
+  .hero-modern {
+    padding: 80px 20px 48px !important;
+  }
+
+  section {
+    padding: 60px 20px !important;
+  }
+
+  .stats {
+    padding: 28px 20px !important;
+    flex-direction: column;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .phone-mockup-modern {
+    width: 200px !important;
+    height: 400px !important;
+  }
+
+  footer {
+    padding: 32px 20px !important;
   }
 }
