@@ -25,9 +25,12 @@ export const metadata: Metadata = {
   title: 'Alae Ibnou Cheikh | CS Student & AI Developer',
   description: 'Portfolio of Alae Ibnou Cheikh - Computer Science student specialising in AI and Data Analysis. Building data-driven solutions and digital products.',
   icons: {
-    icon: '/portfolio-icon.svg',
-    shortcut: '/portfolio-icon.svg',
-    apple: '/portfolio-icon.svg',
+    icon: [
+      { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/portfolio-icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon-light-32x32.png',
+    apple: '/apple-icon.png',
   },
 }
 
