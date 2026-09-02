@@ -39,16 +39,17 @@ const skillCards = [
     ],
   },
   {
-    lbl: "AI and Tools",
-    title: "Applied Intelligence",
+    lbl: "AI Specialisation",
+    title: "LLMs, RAG, Governance",
     items: [
       { text: "OpenAI API",         hi: true },
-      { text: "Generative AI",      hi: true },
+      { text: "RAG Architectures",  hi: true },
+      { text: "AI Risk",            hi: true },
+      { text: "Technical AI Governance", hi: true },
       { text: "Prompt Engineering", hi: true },
       { text: "Cursor",             hi: false },
-      { text: "Claude API",         hi: false },
+      { text: "AI Strategy",        hi: false },
       { text: "GitHub",             hi: false },
-      { text: "Cisco",              hi: false },
     ],
   },
 ]

@@ -84,7 +84,7 @@ export function Hero() {
                 textTransform: "uppercase",
               }}
             >
-              Available for Internships 2026
+              Final-Year Computer Science Student
             </span>
           </div>
 
@@ -217,7 +217,7 @@ export function Hero() {
                 textTransform: "uppercase",
               }}
             >
-              AI · Data · Software
+              LLMs · RAG · AI Governance
             </span>
             <span style={{ color: "#bbb" }}>{"*/"}</span>
           </div>
@@ -235,7 +235,7 @@ export function Hero() {
               animationDelay: "0.22s",
             }}
           >
-            I design and build software that solves problems worth solving. AI systems, data pipelines, mobile applications, and the infrastructure that holds them together. What drives me is not the technical challenge alone, but the possibility of using these tools to create something that matters.
+            Final-year Computer Science student specialising in Artificial Intelligence, focused on LLMs, RAG architectures, AI risk, and technical AI governance. I combine hands-on technical delivery with commercially grounded AI strategy and transformation thinking.
           </p>
 
           {/* Buttons */}

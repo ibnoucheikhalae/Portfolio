@@ -7,7 +7,7 @@
 
 ## About
 
-Personal portfolio website for Alae Ibnoucheikh — Computer Science MEng student at the University of Portsmouth, building in AI, data, and software engineering.
+Personal portfolio website for Alae Ibnoucheikh — final-year Computer Science student at the University of Portsmouth specialising in Artificial Intelligence, with a focus on LLMs, RAG architectures, AI risk, and technical AI governance.
 
 Designed and built from scratch. No templates. Four hero rebuilds. Six rewrites of the about section. Every pixel intentional.
 
@@ -76,12 +76,12 @@ portfolio/
 
 ## About Me
 
-CS student at the University of Portsmouth. Previously at J.P. Morgan (Market Risk Insight Week) and IBM (Consulting Insight Week). 
+Final-year Computer Science student at the University of Portsmouth specialising in Artificial Intelligence. Interested in AI strategy, transformation, and responsible adoption across traditional AI/ML, generative AI, and agentic AI. Previously at J.P. Morgan (Market Risk Insight Week) and IBM (Consulting Insight Week).
 Two-time Top 3 hackathon placement.
 Seven races including two half-marathons.
 Trilingual.
 
-Currently looking for a **summer 2026 internship** in AI, data, or software engineering.
+Currently looking for opportunities where I can help organisations translate AI capability into clear, decision-ready transformation outcomes.
 
 ---
 

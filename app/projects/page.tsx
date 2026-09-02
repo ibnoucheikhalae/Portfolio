@@ -89,6 +89,7 @@ export default function ProjectsPage() {
           </div>
           <div className="proj-footer-links">
             <a href="https://www.linkedin.com/in/alae-ibnou-cheikh-a9994b334/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://medium.com/@ibnoucheikhalae" target="_blank" rel="noreferrer">Medium</a>
             <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
             <a href="/">Home</a>
           </div>

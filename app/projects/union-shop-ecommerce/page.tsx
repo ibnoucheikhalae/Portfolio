@@ -503,6 +503,7 @@ export default function UnionShopPage() {
             </svg>
             LinkedIn
           </a>
+          <a href="https://medium.com/@ibnoucheikhalae" target="_blank" rel="noreferrer">Medium</a>
           <a href="mailto:ibnoucheikhalae@gmail.com">Contact</a>
         </div>
       </footer>

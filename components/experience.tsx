@@ -20,7 +20,7 @@ const timeline = [
   {
     period: "Oct 2024",
     company: "RSK Group",
-    role: "Data Analysis Micro-Intern",
+    role: "Data Analytics Micro-Intern",
     desc: "Analysed coastal environmental datasets and produced visualisations supporting sustainability decisions.",
     tag: "AI · Environmental",
   },

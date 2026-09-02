@@ -8,7 +8,7 @@ import { PolaroidStack } from "@/components/polaroid-stack"
 export const metadata: Metadata = {
   title: "About | Alae Ibnou Cheikh",
   description:
-    "Learn more about Alae Ibnou Cheikh - a Computer Science student passionate about AI, data analysis, running, and building impact-driven technology.",
+    "Learn more about Alae Ibnou Cheikh - a final-year Computer Science student specialising in Artificial Intelligence, with interests in LLMs, RAG architectures, AI risk, and technical AI governance.",
 }
 
 export default function AboutPage() {
@@ -78,7 +78,7 @@ export default function AboutPage() {
             </blockquote>
             <div className="flex flex-col gap-5 text-sm leading-[1.9]" style={{ color: "#555" }}>
               <p>
-                I am a <span style={{ color: "#111", fontWeight: 600 }}>Computer Science MEng student</span> with a deep interest in artificial intelligence, data analysis, and building technology that creates real impact. What drives me is not the technical challenge alone, but the possibility of using these tools to solve problems that actually matter whether that means analysing coastal erosion data for environmental sustainability or prototyping predictive systems for industry clients.
+                I am a <span style={{ color: "#111", fontWeight: 600 }}>final-year Computer Science student</span> specialising in Artificial Intelligence, with a particular interest in LLMs, RAG architectures, AI risk, and technical AI governance. I have hands-on experience applying Python, SQL, and AI-driven problem solving across financial services and real-world analytical projects, alongside a growing focus on AI strategy, transformation, and operating model design.
               </p>
               <p>
                 I am most alive in the space where a hard technical problem connects to something bigger than the code itself. That is the work I want to do, and the engineer I am becoming.
@@ -254,13 +254,13 @@ export default function AboutPage() {
             </blockquote>
             <div className="flex flex-col gap-5 text-sm leading-[1.9]" style={{ color: "#555" }}>
               <p>
-                My focus is on the intersection of <span style={{ color: "#111", fontWeight: 600 }}>AI and data analysis</span>. Specifically, I am interested in building systems that help people and organisations make better decisions not by automating thinking, but by surfacing the right information at the right moment.
+                My current specialisation combines <span style={{ color: "#111", fontWeight: 600 }}>responsible AI delivery and transformation</span>. I am especially interested in helping organisations move from current state to target state by combining innovation, digitalisation, and responsible adoption across traditional AI/ML, generative AI, and agentic AI.
               </p>
               <p>
-                I am especially drawn to impact-driven work: sustainability projects where data reveals something that changes how we act, or fintech solutions that make better financial tools accessible to more people. The thread connecting all of my interests is a belief that technology should serve a purpose beyond itself.
+                I am commercially minded and comfortable translating complex technical concepts into clear, decision-ready insights, controls, and transformation priorities.
               </p>
               <p>
-                Right now I am deepening my skills in machine learning, predictive modelling, and full-stack development. Every project I take on is a deliberate step toward becoming the kind of engineer who can bridge the gap between technical capability and real-world impact. That gap is where I want to work.
+                The thread connecting all of my interests is a belief that technology should serve a purpose beyond itself and that strong technical execution should be matched by thoughtful governance and practical business impact.
               </p>
             </div>
 

@@ -1,4 +1,4 @@
-export type ProjectCategory = "AI/Data" | "Mobile" | "Networking" | "Databases"
+export type ProjectCategory = "AI Governance & Strategy" | "Mobile" | "Networking" | "Databases"
 
 export interface Project {
   slug: string
@@ -19,7 +19,7 @@ export interface Project {
 }
 
 export const categories: ProjectCategory[] = [
-  "AI/Data",
+  "AI Governance & Strategy",
   "Mobile",
   "Networking",
   "Databases",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     summary:
       "Analysed coastal environmental data using AI models and visualisations to generate sustainability insights.",
     techStack: ["Java", "AI"],
-    category: "AI/Data",
+    category: "AI Governance & Strategy",
     githubUrl: "https://github.com",
     highlights: [
       "Environmental insights",

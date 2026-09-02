@@ -95,10 +95,10 @@ export function About() {
           </div>
 
           <p className="text-sm leading-[1.9] mb-4" style={{ color: "#555" }}>
-            I am a <span style={{ color: "#111", fontWeight: 600 }}>Computer Science MEng student</span> who builds things that work in the real world, not just in coursework submissions. From a Flutter app with 201 passing tests to an AI erosion prediction tool built at an environmental challenge, I ship.
+            I am a <span style={{ color: "#111", fontWeight: 600 }}>final-year Computer Science student</span> specialising in Artificial Intelligence, with a particular interest in LLMs, RAG architectures, AI risk, and technical AI governance.
           </p>
           <p className="text-sm leading-[1.9] mb-4" style={{ color: "#555" }}>
-            I am drawn to the places where technology intersects with something that matters: <span style={{ color: "#111", fontWeight: 600 }}>sustainability data</span> that changes how we protect coastlines, <span style={{ color: "#111", fontWeight: 600 }}>financial tools</span> that reach more people, <span style={{ color: "#111", fontWeight: 600 }}>AI systems</span> that surface the right insight at the right moment.
+            I apply Python, SQL, and AI-driven problem solving across financial services and real-world analytical projects, and I am increasingly focused on AI strategy, transformation, and operating model design that helps organisations move from current state to target state responsibly.
           </p>
           <p className="text-sm leading-[1.9] mb-6" style={{ color: "#555" }}>
             Beyond the code, I run half-marathons, speak four languages, and have sat across the table from teams at <span style={{ color: "#111", fontWeight: 600 }}>J.P. Morgan</span> and <span style={{ color: "#111", fontWeight: 600 }}>IBM</span>. I bring the same discipline to all three.

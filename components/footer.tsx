@@ -30,6 +30,7 @@ export function Footer() {
         {[
           { label: "GitHub",   href: "https://github.com/ibnoucheikhalae" },
           { label: "LinkedIn", href: "https://www.linkedin.com/in/alae-ibnou-cheikh-a9994b334/" },
+          { label: "Medium",   href: "https://medium.com/@ibnoucheikhalae" },
           { label: "Email",    href: "mailto:alaeibnoucheikh@gmail.com" },
         ].map(link => (
           <a

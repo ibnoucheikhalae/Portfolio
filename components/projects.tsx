@@ -36,7 +36,7 @@ const cardData = [
   },
   {
     num: "03",
-    cat: "AI · Environmental",
+    cat: "AI Governance · Environmental",
     href: "/projects/rsk-coastal-change",
     name: "RSK Coastal Change",
     desc: "Data-driven coastal analysis for North Norfolk with an AI erosion prediction prototype built at an environmental hackathon.",
