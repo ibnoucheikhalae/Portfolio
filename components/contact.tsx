@@ -34,6 +34,16 @@ const contactLinks = [
       </svg>
     ),
   },
+  {
+    label: "Medium",
+    value: "@ibnoucheikhalae",
+    href: "https://medium.com/@ibnoucheikhalae",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5v-9zm4.25 4.5a2.25 2.25 0 1 0 0 .001V12zm4.5 0c0-1.519 1.063-2.75 2.375-2.75S17.5 10.481 17.5 12s-1.063 2.75-2.375 2.75S12.75 13.519 12.75 12zm-1.5 0a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0zm10.25 0c0 1.104-.56 2-1.25 2s-1.25-.896-1.25-2 .56-2 1.25-2 1.25.896 1.25 2z" />
+      </svg>
+    ),
+  },
 ]
 
 export function Contact() {
