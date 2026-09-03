@@ -28,30 +28,34 @@ export const categories: ProjectCategory[] = [
 
 export const projects: Project[] = [
   {
-    slug: "union-shop-ecommerce",
-    title: "Union Shop E-Commerce",
+    slug: "penetration-testing-report",
+    title: "Penetration Testing Report",
     summary:
-      "Mobile shopping platform built with Flutter featuring secure login, product filtering, and a fully functional cart system.",
-    techStack: ["Flutter", "Dart"],
-    category: "Mobile",
-    githubUrl: "https://github.com/ibnoucheikhalae/union_shop",
-    highlights: ["Login & auth", "Product filtering", "Cart management"],
+      "Ethical hacking case study showing how a vulnerable Linux web server was taken from initial access to root compromise through a chain of misconfigurations and reporting discipline.",
+    techStack: ["nmap", "gobuster", "FTP", "Netcat", "CVSS", "CWE"],
+    category: "Cybersecurity",
+    githubUrl: "https://github.com",
+    highlights: [
+      "Five-stage compromise chain",
+      "CVSS v3.1 and CWE mapping",
+      "Root cause remediation reporting",
+    ],
     caseStudy: {
       problem:
-        "Local union shops lacked a modern mobile presence, making it difficult for members to browse products and place orders without visiting in person. Existing solutions were web-only and not optimised for mobile workflows.",
+        "A deliberately vulnerable Linux web server in an isolated lab environment exposed multiple weaknesses across the attack surface, including service misconfiguration, file upload exposure, weak credential storage, and excessive privilege assignment.",
       solution:
-        "Built a cross-platform mobile application using Flutter and Dart that provides a complete shopping experience. The app features secure authentication, real-time product browsing with category filters, and a persistent cart system that syncs across sessions.",
+        "Conducted an authorised penetration test end to end, starting with reconnaissance and enumeration, then chaining the weaknesses into authenticated-less access, remote code execution, credential recovery, and privilege escalation to full root compromise.",
       features: [
-        "Secure login and registration with session persistence",
-        "Product catalogue with category-based filtering and search",
-        "Shopping cart with quantity management and order summary",
-        "Responsive UI adapting to various screen sizes",
-        "State management using Provider pattern",
+        "Reconnaissance and service fingerprinting using standard open-source tooling",
+        "Enumeration of anonymous FTP exposure and web root overlap",
+        "Exploitation of an unrestricted upload path to obtain a remote shell in the lab",
+        "Post-exploitation analysis covering credential storage and privilege boundaries",
+        "Risk reporting with CVSS v3.1, CWE mapping, and actionable remediation",
       ],
       results:
-        "Delivered a fully functional prototype demonstrating end-to-end mobile commerce capabilities. The project showcased strong competence in cross-platform development and mobile UX design principles.",
+        "Demonstrated full root compromise in a controlled environment and translated the findings into a professional-quality risk narrative that separated symptoms from root causes.",
       learned:
-        "Deepened my understanding of Flutter state management patterns, particularly Provider vs Riverpod trade-offs. Learned the importance of designing offline-first mobile experiences and handling edge cases in cart synchronisation.",
+        "Strengthened my ability to think in attack chains rather than isolated findings, and to present technical security issues in a way that supports remediation, governance, and informed decision-making.",
     },
   },
   {
@@ -148,34 +152,30 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "penetration-testing-report",
-    title: "Penetration Testing Report",
+    slug: "union-shop-ecommerce",
+    title: "Union Shop E-Commerce",
     summary:
-      "Ethical hacking case study showing how a vulnerable Linux web server was taken from initial access to root compromise through a chain of misconfigurations and reporting discipline.",
-    techStack: ["nmap", "gobuster", "FTP", "Netcat", "CVSS", "CWE"],
-    category: "Cybersecurity",
-    githubUrl: "https://github.com",
-    highlights: [
-      "Five-stage compromise chain",
-      "CVSS v3.1 and CWE mapping",
-      "Root cause remediation reporting",
-    ],
+      "Mobile shopping platform built with Flutter featuring secure login, product filtering, and a fully functional cart system.",
+    techStack: ["Flutter", "Dart"],
+    category: "Mobile",
+    githubUrl: "https://github.com/ibnoucheikhalae/union_shop",
+    highlights: ["Login & auth", "Product filtering", "Cart management"],
     caseStudy: {
       problem:
-        "A deliberately vulnerable Linux web server in an isolated lab environment exposed multiple weaknesses across the attack surface, including service misconfiguration, file upload exposure, weak credential storage, and excessive privilege assignment.",
+        "Local union shops lacked a modern mobile presence, making it difficult for members to browse products and place orders without visiting in person. Existing solutions were web-only and not optimised for mobile workflows.",
       solution:
-        "Conducted an authorised penetration test end to end, starting with reconnaissance and enumeration, then chaining the weaknesses into authenticated-less access, remote code execution, credential recovery, and privilege escalation to full root compromise.",
+        "Built a cross-platform mobile application using Flutter and Dart that provides a complete shopping experience. The app features secure authentication, real-time product browsing with category filters, and a persistent cart system that syncs across sessions.",
       features: [
-        "Reconnaissance and service fingerprinting using standard open-source tooling",
-        "Enumeration of anonymous FTP exposure and web root overlap",
-        "Exploitation of an unrestricted upload path to obtain a remote shell in the lab",
-        "Post-exploitation analysis covering credential storage and privilege boundaries",
-        "Risk reporting with CVSS v3.1, CWE mapping, and actionable remediation",
+        "Secure login and registration with session persistence",
+        "Product catalogue with category-based filtering and search",
+        "Shopping cart with quantity management and order summary",
+        "Responsive UI adapting to various screen sizes",
+        "State management using Provider pattern",
       ],
       results:
-        "Demonstrated full root compromise in a controlled environment and translated the findings into a professional-quality risk narrative that separated symptoms from root causes.",
+        "Delivered a fully functional prototype demonstrating end-to-end mobile commerce capabilities. The project showcased strong competence in cross-platform development and mobile UX design principles.",
       learned:
-        "Strengthened my ability to think in attack chains rather than isolated findings, and to present technical security issues in a way that supports remediation, governance, and informed decision-making.",
+        "Deepened my understanding of Flutter state management patterns, particularly Provider vs Riverpod trade-offs. Learned the importance of designing offline-first mobile experiences and handling edge cases in cart synchronisation.",
     },
   },
 ]

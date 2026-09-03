@@ -6,23 +6,39 @@ import { AnimatedItem } from "@/components/animated-section"
 const cardData = [
   {
     num: "01",
-    cat: "Mobile · Full-Stack",
-    href: "/projects/union-shop-ecommerce",
-    name: "Union Shop",
-    desc: "Flutter e-commerce app for Portsmouth Student Union with full auth, real-time cart, and merchandise personalisation.",
+    cat: "Cybersecurity · Reporting",
+    href: "/projects/penetration-testing-report",
+    name: "Penetration Testing Report",
+    desc: "Ethical hacking case study showing a full compromise chain from recon to root access in an isolated lab environment.",
     highlights: [
-      "201 passing tests across unit, widget and integration layers",
-      "Email, Google, and Apple Sign-In authentication",
-      "Real-time Firestore cart and order management",
+      "Five-stage attack chain",
+      "CVSS v3.1 and CWE mapping",
+      "Root cause remediation reporting",
     ],
-    chips: ["Flutter", "Firebase", "Dart"],
-    slug: "union-shop-ecommerce",
+    chips: ["nmap", "gobuster", "CVSS", "CWE"],
+    slug: "penetration-testing-report",
+    imageSlug: "union-shop-ecommerce",
     featured: true,
   },
   {
     num: "02",
+    cat: "Networking · Infrastructure",
+    href: "/projects/festival-network-infrastructure",
+    name: "Festival Network",
+    desc: "Secure network architecture for a 35,000-attendee festival with VLAN segmentation and real-time monitoring.",
+    highlights: [
+      "VLAN segmentation isolating staff, vendor, and public traffic",
+      "35,000 concurrent user scale with redundancy planning",
+      "Cisco switch topology and real-time monitoring config",
+    ],
+    chips: ["Cisco", "VLAN", "Networking"],
+    slug: "festival-network-infrastructure",
+    featured: true,
+  },
+  {
+    num: "03",
     cat: "Database · SQL",
-    href: "/projects/carcare-hub",
+    href: "/projects/carcare-hub-database",
     name: "CarCare Hub",
     desc: "Fully normalised relational database for a real-world car service business built across two iterative coursework stages.",
     highlights: [
@@ -31,11 +47,11 @@ const cardData = [
       "2 complete ERD iterations with documented decisions",
     ],
     chips: ["PostgreSQL", "ERD", "SQL"],
-    slug: "carcare-hub",
+    slug: "carcare-hub-database",
     featured: false,
   },
   {
-    num: "03",
+    num: "04",
     cat: "AI Governance · Environmental",
     href: "/projects/rsk-coastal-change",
     name: "RSK Coastal Change",
@@ -50,34 +66,19 @@ const cardData = [
     featured: false,
   },
   {
-    num: "04",
-    cat: "Cybersecurity · Reporting",
-    href: "/projects/penetration-testing-report",
-    name: "Penetration Testing Report",
-    desc: "Ethical hacking case study showing a full compromise chain from recon to root access in an isolated lab environment.",
-    highlights: [
-      "Five-stage attack chain",
-      "CVSS v3.1 and CWE mapping",
-      "Root cause remediation reporting",
-    ],
-    chips: ["nmap", "gobuster", "CVSS", "CWE"],
-    slug: "penetration-testing-report",
-    featured: true,
-  },
-  {
     num: "05",
-    cat: "Networking · Infrastructure",
-    href: "/projects/festival-network-infrastructure",
-    name: "Festival Network",
-    desc: "Secure network architecture for a 35,000-attendee festival with VLAN segmentation and real-time monitoring.",
+    cat: "Mobile · Full-Stack",
+    href: "/projects/union-shop-ecommerce",
+    name: "Union Shop",
+    desc: "Flutter e-commerce app for Portsmouth Student Union with full auth, real-time cart, and merchandise personalisation.",
     highlights: [
-      "VLAN segmentation isolating staff, vendor, and public traffic",
-      "35,000 concurrent user scale with redundancy planning",
-      "Cisco switch topology and real-time monitoring config",
+      "201 passing tests across unit, widget and integration layers",
+      "Email, Google, and Apple Sign-In authentication",
+      "Real-time Firestore cart and order management",
     ],
-    chips: ["Cisco", "VLAN", "Networking"],
-    slug: "festival-network-infrastructure",
-    featured: true,
+    chips: ["Flutter", "Firebase", "Dart"],
+    slug: "union-shop-ecommerce",
+    featured: false,
   },
 ]
 
@@ -165,7 +166,7 @@ export function Projects() {
                 </div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/images/${card.slug}-preview.jpg`}
+                  src={`/images/${card.imageSlug ?? card.slug}-preview.jpg`}
                   alt={card.name}
                   className="w-full h-full object-cover block absolute inset-0 transition-all duration-700 group-hover:scale-[1.05]"
                   style={{ filter: "brightness(.6) saturate(.7)" }}
