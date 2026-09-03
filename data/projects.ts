@@ -1,4 +1,4 @@
-export type ProjectCategory = "AI Governance & Strategy" | "Mobile" | "Networking" | "Databases"
+export type ProjectCategory = "AI Governance & Strategy" | "Cybersecurity" | "Mobile" | "Networking" | "Databases"
 
 export interface Project {
   slug: string
@@ -20,6 +20,7 @@ export interface Project {
 
 export const categories: ProjectCategory[] = [
   "AI Governance & Strategy",
+  "Cybersecurity",
   "Mobile",
   "Networking",
   "Databases",
@@ -144,6 +145,37 @@ export const projects: Project[] = [
         "The analysis identified measurable erosion trends and vegetation shifts that aligned with published environmental studies, validating the model's accuracy and practical utility for sustainability planning.",
       learned:
         "Learned to work with messy real-world environmental data, handle missing values and temporal alignment challenges, and translate AI model outputs into actionable insights for non-technical stakeholders.",
+    },
+  },
+  {
+    slug: "penetration-testing-report",
+    title: "Penetration Testing Report",
+    summary:
+      "Ethical hacking case study showing how a vulnerable Linux web server was taken from initial access to root compromise through a chain of misconfigurations and reporting discipline.",
+    techStack: ["nmap", "gobuster", "FTP", "Netcat", "CVSS", "CWE"],
+    category: "Cybersecurity",
+    githubUrl: "https://github.com",
+    highlights: [
+      "Five-stage compromise chain",
+      "CVSS v3.1 and CWE mapping",
+      "Root cause remediation reporting",
+    ],
+    caseStudy: {
+      problem:
+        "A deliberately vulnerable Linux web server in an isolated lab environment exposed multiple weaknesses across the attack surface, including service misconfiguration, file upload exposure, weak credential storage, and excessive privilege assignment.",
+      solution:
+        "Conducted an authorised penetration test end to end, starting with reconnaissance and enumeration, then chaining the weaknesses into authenticated-less access, remote code execution, credential recovery, and privilege escalation to full root compromise.",
+      features: [
+        "Reconnaissance and service fingerprinting using standard open-source tooling",
+        "Enumeration of anonymous FTP exposure and web root overlap",
+        "Exploitation of an unrestricted upload path to obtain a remote shell in the lab",
+        "Post-exploitation analysis covering credential storage and privilege boundaries",
+        "Risk reporting with CVSS v3.1, CWE mapping, and actionable remediation",
+      ],
+      results:
+        "Demonstrated full root compromise in a controlled environment and translated the findings into a professional-quality risk narrative that separated symptoms from root causes.",
+      learned:
+        "Strengthened my ability to think in attack chains rather than isolated findings, and to present technical security issues in a way that supports remediation, governance, and informed decision-making.",
     },
   },
 ]

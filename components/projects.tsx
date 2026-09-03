@@ -51,6 +51,21 @@ const cardData = [
   },
   {
     num: "04",
+    cat: "Cybersecurity · Reporting",
+    href: "/projects/penetration-testing-report",
+    name: "Penetration Testing Report",
+    desc: "Ethical hacking case study showing a full compromise chain from recon to root access in an isolated lab environment.",
+    highlights: [
+      "Five-stage attack chain",
+      "CVSS v3.1 and CWE mapping",
+      "Root cause remediation reporting",
+    ],
+    chips: ["nmap", "gobuster", "CVSS", "CWE"],
+    slug: "penetration-testing-report",
+    featured: true,
+  },
+  {
+    num: "05",
     cat: "Networking · Infrastructure",
     href: "/projects/festival-network-infrastructure",
     name: "Festival Network",
